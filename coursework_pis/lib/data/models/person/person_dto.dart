@@ -5,26 +5,28 @@ part 'person_dto.g.dart';
 @JsonSerializable()
 class PersonDto {
   PersonDto(
-      {required this.id,
-      required this.name,
+      {this.id,
+      required this.fullName,
       required this.post,
       required this.academicDegree,
       required this.workExperience,
-      required this.idDepartment,
-      required this.status});
-  final String id;
-  final String name;
+      this.idDepartment,
+      this.status});
+  final String? id;
+  @JsonKey(name: 'full_name')
+  final String fullName;
   final String post;
   @JsonKey(name: 'academic_degree')
   final String academicDegree;
   @JsonKey(name: 'work_experience')
   final String workExperience;
-  final String idDepartment;
-  final String status;
+  @JsonKey(name: 'id_department')
+  final String? idDepartment;
+  final String? status;
 
   Person toDomain() => Person(
         id: id,
-        name: name,
+        fullName: fullName,
         post: post,
         academicDegree: academicDegree,
         workExperience: workExperience,
@@ -34,7 +36,7 @@ class PersonDto {
 
   factory PersonDto.fromDomain(Person object) => PersonDto(
         id: object.id,
-        name: object.name,
+        fullName: object.fullName,
         post: object.post,
         academicDegree: object.academicDegree,
         workExperience: object.workExperience,

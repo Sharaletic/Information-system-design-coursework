@@ -16,29 +16,28 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$PersonEvent {
-  String get idDepartment => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String idDepartment) load,
-    required TResult Function(Person person, String idDepartment) addPerson,
-    required TResult Function(String id, String idDepartment) deletePerson,
-    required TResult Function(Person person, String idDepartment) updatePerson,
+    required TResult Function() load,
+    required TResult Function(Person person) addPerson,
+    required TResult Function(String id) deletePerson,
+    required TResult Function(Person person) updatePerson,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String idDepartment)? load,
-    TResult? Function(Person person, String idDepartment)? addPerson,
-    TResult? Function(String id, String idDepartment)? deletePerson,
-    TResult? Function(Person person, String idDepartment)? updatePerson,
+    TResult? Function()? load,
+    TResult? Function(Person person)? addPerson,
+    TResult? Function(String id)? deletePerson,
+    TResult? Function(Person person)? updatePerson,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String idDepartment)? load,
-    TResult Function(Person person, String idDepartment)? addPerson,
-    TResult Function(String id, String idDepartment)? deletePerson,
-    TResult Function(Person person, String idDepartment)? updatePerson,
+    TResult Function()? load,
+    TResult Function(Person person)? addPerson,
+    TResult Function(String id)? deletePerson,
+    TResult Function(Person person)? updatePerson,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -67,12 +66,6 @@ mixin _$PersonEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
-  /// Create a copy of PersonEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $PersonEventCopyWith<PersonEvent> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -80,8 +73,6 @@ abstract class $PersonEventCopyWith<$Res> {
   factory $PersonEventCopyWith(
           PersonEvent value, $Res Function(PersonEvent) then) =
       _$PersonEventCopyWithImpl<$Res, PersonEvent>;
-  @useResult
-  $Res call({String idDepartment});
 }
 
 /// @nodoc
@@ -96,28 +87,13 @@ class _$PersonEventCopyWithImpl<$Res, $Val extends PersonEvent>
 
   /// Create a copy of PersonEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? idDepartment = null,
-  }) {
-    return _then(_value.copyWith(
-      idDepartment: null == idDepartment
-          ? _value.idDepartment
-          : idDepartment // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$LoadImplCopyWith<$Res> implements $PersonEventCopyWith<$Res> {
+abstract class _$$LoadImplCopyWith<$Res> {
   factory _$$LoadImplCopyWith(
           _$LoadImpl value, $Res Function(_$LoadImpl) then) =
       __$$LoadImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String idDepartment});
 }
 
 /// @nodoc
@@ -129,86 +105,60 @@ class __$$LoadImplCopyWithImpl<$Res>
 
   /// Create a copy of PersonEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? idDepartment = null,
-  }) {
-    return _then(_$LoadImpl(
-      idDepartment: null == idDepartment
-          ? _value.idDepartment
-          : idDepartment // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$LoadImpl implements _Load {
-  const _$LoadImpl({required this.idDepartment});
-
-  @override
-  final String idDepartment;
+  const _$LoadImpl();
 
   @override
   String toString() {
-    return 'PersonEvent.load(idDepartment: $idDepartment)';
+    return 'PersonEvent.load()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LoadImpl &&
-            (identical(other.idDepartment, idDepartment) ||
-                other.idDepartment == idDepartment));
+        (other.runtimeType == runtimeType && other is _$LoadImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, idDepartment);
-
-  /// Create a copy of PersonEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LoadImplCopyWith<_$LoadImpl> get copyWith =>
-      __$$LoadImplCopyWithImpl<_$LoadImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String idDepartment) load,
-    required TResult Function(Person person, String idDepartment) addPerson,
-    required TResult Function(String id, String idDepartment) deletePerson,
-    required TResult Function(Person person, String idDepartment) updatePerson,
+    required TResult Function() load,
+    required TResult Function(Person person) addPerson,
+    required TResult Function(String id) deletePerson,
+    required TResult Function(Person person) updatePerson,
   }) {
-    return load(idDepartment);
+    return load();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String idDepartment)? load,
-    TResult? Function(Person person, String idDepartment)? addPerson,
-    TResult? Function(String id, String idDepartment)? deletePerson,
-    TResult? Function(Person person, String idDepartment)? updatePerson,
+    TResult? Function()? load,
+    TResult? Function(Person person)? addPerson,
+    TResult? Function(String id)? deletePerson,
+    TResult? Function(Person person)? updatePerson,
   }) {
-    return load?.call(idDepartment);
+    return load?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String idDepartment)? load,
-    TResult Function(Person person, String idDepartment)? addPerson,
-    TResult Function(String id, String idDepartment)? deletePerson,
-    TResult Function(Person person, String idDepartment)? updatePerson,
+    TResult Function()? load,
+    TResult Function(Person person)? addPerson,
+    TResult Function(String id)? deletePerson,
+    TResult Function(Person person)? updatePerson,
     required TResult orElse(),
   }) {
     if (load != null) {
-      return load(idDepartment);
+      return load();
     }
     return orElse();
   }
@@ -252,28 +202,16 @@ class _$LoadImpl implements _Load {
 }
 
 abstract class _Load implements PersonEvent {
-  const factory _Load({required final String idDepartment}) = _$LoadImpl;
-
-  @override
-  String get idDepartment;
-
-  /// Create a copy of PersonEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoadImplCopyWith<_$LoadImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _Load() = _$LoadImpl;
 }
 
 /// @nodoc
-abstract class _$$AddPersonImplCopyWith<$Res>
-    implements $PersonEventCopyWith<$Res> {
+abstract class _$$AddPersonImplCopyWith<$Res> {
   factory _$$AddPersonImplCopyWith(
           _$AddPersonImpl value, $Res Function(_$AddPersonImpl) then) =
       __$$AddPersonImplCopyWithImpl<$Res>;
-  @override
   @useResult
-  $Res call({Person person, String idDepartment});
+  $Res call({Person person});
 }
 
 /// @nodoc
@@ -290,17 +228,12 @@ class __$$AddPersonImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? person = null,
-    Object? idDepartment = null,
   }) {
     return _then(_$AddPersonImpl(
       person: null == person
           ? _value.person
           : person // ignore: cast_nullable_to_non_nullable
               as Person,
-      idDepartment: null == idDepartment
-          ? _value.idDepartment
-          : idDepartment // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -308,16 +241,14 @@ class __$$AddPersonImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AddPersonImpl implements _AddPerson {
-  const _$AddPersonImpl({required this.person, required this.idDepartment});
+  const _$AddPersonImpl({required this.person});
 
   @override
   final Person person;
-  @override
-  final String idDepartment;
 
   @override
   String toString() {
-    return 'PersonEvent.addPerson(person: $person, idDepartment: $idDepartment)';
+    return 'PersonEvent.addPerson(person: $person)';
   }
 
   @override
@@ -325,13 +256,11 @@ class _$AddPersonImpl implements _AddPerson {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AddPersonImpl &&
-            (identical(other.person, person) || other.person == person) &&
-            (identical(other.idDepartment, idDepartment) ||
-                other.idDepartment == idDepartment));
+            (identical(other.person, person) || other.person == person));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, person, idDepartment);
+  int get hashCode => Object.hash(runtimeType, person);
 
   /// Create a copy of PersonEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -344,36 +273,36 @@ class _$AddPersonImpl implements _AddPerson {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String idDepartment) load,
-    required TResult Function(Person person, String idDepartment) addPerson,
-    required TResult Function(String id, String idDepartment) deletePerson,
-    required TResult Function(Person person, String idDepartment) updatePerson,
+    required TResult Function() load,
+    required TResult Function(Person person) addPerson,
+    required TResult Function(String id) deletePerson,
+    required TResult Function(Person person) updatePerson,
   }) {
-    return addPerson(person, idDepartment);
+    return addPerson(person);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String idDepartment)? load,
-    TResult? Function(Person person, String idDepartment)? addPerson,
-    TResult? Function(String id, String idDepartment)? deletePerson,
-    TResult? Function(Person person, String idDepartment)? updatePerson,
+    TResult? Function()? load,
+    TResult? Function(Person person)? addPerson,
+    TResult? Function(String id)? deletePerson,
+    TResult? Function(Person person)? updatePerson,
   }) {
-    return addPerson?.call(person, idDepartment);
+    return addPerson?.call(person);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String idDepartment)? load,
-    TResult Function(Person person, String idDepartment)? addPerson,
-    TResult Function(String id, String idDepartment)? deletePerson,
-    TResult Function(Person person, String idDepartment)? updatePerson,
+    TResult Function()? load,
+    TResult Function(Person person)? addPerson,
+    TResult Function(String id)? deletePerson,
+    TResult Function(Person person)? updatePerson,
     required TResult orElse(),
   }) {
     if (addPerson != null) {
-      return addPerson(person, idDepartment);
+      return addPerson(person);
     }
     return orElse();
   }
@@ -417,31 +346,24 @@ class _$AddPersonImpl implements _AddPerson {
 }
 
 abstract class _AddPerson implements PersonEvent {
-  const factory _AddPerson(
-      {required final Person person,
-      required final String idDepartment}) = _$AddPersonImpl;
+  const factory _AddPerson({required final Person person}) = _$AddPersonImpl;
 
   Person get person;
-  @override
-  String get idDepartment;
 
   /// Create a copy of PersonEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AddPersonImplCopyWith<_$AddPersonImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DeletePersonImplCopyWith<$Res>
-    implements $PersonEventCopyWith<$Res> {
+abstract class _$$DeletePersonImplCopyWith<$Res> {
   factory _$$DeletePersonImplCopyWith(
           _$DeletePersonImpl value, $Res Function(_$DeletePersonImpl) then) =
       __$$DeletePersonImplCopyWithImpl<$Res>;
-  @override
   @useResult
-  $Res call({String id, String idDepartment});
+  $Res call({String id});
 }
 
 /// @nodoc
@@ -458,16 +380,11 @@ class __$$DeletePersonImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? idDepartment = null,
   }) {
     return _then(_$DeletePersonImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      idDepartment: null == idDepartment
-          ? _value.idDepartment
-          : idDepartment // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -476,16 +393,14 @@ class __$$DeletePersonImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$DeletePersonImpl implements _DeletePerson {
-  const _$DeletePersonImpl({required this.id, required this.idDepartment});
+  const _$DeletePersonImpl({required this.id});
 
   @override
   final String id;
-  @override
-  final String idDepartment;
 
   @override
   String toString() {
-    return 'PersonEvent.deletePerson(id: $id, idDepartment: $idDepartment)';
+    return 'PersonEvent.deletePerson(id: $id)';
   }
 
   @override
@@ -493,13 +408,11 @@ class _$DeletePersonImpl implements _DeletePerson {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DeletePersonImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.idDepartment, idDepartment) ||
-                other.idDepartment == idDepartment));
+            (identical(other.id, id) || other.id == id));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, idDepartment);
+  int get hashCode => Object.hash(runtimeType, id);
 
   /// Create a copy of PersonEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -512,36 +425,36 @@ class _$DeletePersonImpl implements _DeletePerson {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String idDepartment) load,
-    required TResult Function(Person person, String idDepartment) addPerson,
-    required TResult Function(String id, String idDepartment) deletePerson,
-    required TResult Function(Person person, String idDepartment) updatePerson,
+    required TResult Function() load,
+    required TResult Function(Person person) addPerson,
+    required TResult Function(String id) deletePerson,
+    required TResult Function(Person person) updatePerson,
   }) {
-    return deletePerson(id, idDepartment);
+    return deletePerson(id);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String idDepartment)? load,
-    TResult? Function(Person person, String idDepartment)? addPerson,
-    TResult? Function(String id, String idDepartment)? deletePerson,
-    TResult? Function(Person person, String idDepartment)? updatePerson,
+    TResult? Function()? load,
+    TResult? Function(Person person)? addPerson,
+    TResult? Function(String id)? deletePerson,
+    TResult? Function(Person person)? updatePerson,
   }) {
-    return deletePerson?.call(id, idDepartment);
+    return deletePerson?.call(id);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String idDepartment)? load,
-    TResult Function(Person person, String idDepartment)? addPerson,
-    TResult Function(String id, String idDepartment)? deletePerson,
-    TResult Function(Person person, String idDepartment)? updatePerson,
+    TResult Function()? load,
+    TResult Function(Person person)? addPerson,
+    TResult Function(String id)? deletePerson,
+    TResult Function(Person person)? updatePerson,
     required TResult orElse(),
   }) {
     if (deletePerson != null) {
-      return deletePerson(id, idDepartment);
+      return deletePerson(id);
     }
     return orElse();
   }
@@ -585,31 +498,24 @@ class _$DeletePersonImpl implements _DeletePerson {
 }
 
 abstract class _DeletePerson implements PersonEvent {
-  const factory _DeletePerson(
-      {required final String id,
-      required final String idDepartment}) = _$DeletePersonImpl;
+  const factory _DeletePerson({required final String id}) = _$DeletePersonImpl;
 
   String get id;
-  @override
-  String get idDepartment;
 
   /// Create a copy of PersonEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeletePersonImplCopyWith<_$DeletePersonImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$UpdatePersonImplCopyWith<$Res>
-    implements $PersonEventCopyWith<$Res> {
+abstract class _$$UpdatePersonImplCopyWith<$Res> {
   factory _$$UpdatePersonImplCopyWith(
           _$UpdatePersonImpl value, $Res Function(_$UpdatePersonImpl) then) =
       __$$UpdatePersonImplCopyWithImpl<$Res>;
-  @override
   @useResult
-  $Res call({Person person, String idDepartment});
+  $Res call({Person person});
 }
 
 /// @nodoc
@@ -626,17 +532,12 @@ class __$$UpdatePersonImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? person = null,
-    Object? idDepartment = null,
   }) {
     return _then(_$UpdatePersonImpl(
       person: null == person
           ? _value.person
           : person // ignore: cast_nullable_to_non_nullable
               as Person,
-      idDepartment: null == idDepartment
-          ? _value.idDepartment
-          : idDepartment // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -644,16 +545,14 @@ class __$$UpdatePersonImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UpdatePersonImpl implements _UpdatePerson {
-  const _$UpdatePersonImpl({required this.person, required this.idDepartment});
+  const _$UpdatePersonImpl({required this.person});
 
   @override
   final Person person;
-  @override
-  final String idDepartment;
 
   @override
   String toString() {
-    return 'PersonEvent.updatePerson(person: $person, idDepartment: $idDepartment)';
+    return 'PersonEvent.updatePerson(person: $person)';
   }
 
   @override
@@ -661,13 +560,11 @@ class _$UpdatePersonImpl implements _UpdatePerson {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdatePersonImpl &&
-            (identical(other.person, person) || other.person == person) &&
-            (identical(other.idDepartment, idDepartment) ||
-                other.idDepartment == idDepartment));
+            (identical(other.person, person) || other.person == person));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, person, idDepartment);
+  int get hashCode => Object.hash(runtimeType, person);
 
   /// Create a copy of PersonEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -680,36 +577,36 @@ class _$UpdatePersonImpl implements _UpdatePerson {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String idDepartment) load,
-    required TResult Function(Person person, String idDepartment) addPerson,
-    required TResult Function(String id, String idDepartment) deletePerson,
-    required TResult Function(Person person, String idDepartment) updatePerson,
+    required TResult Function() load,
+    required TResult Function(Person person) addPerson,
+    required TResult Function(String id) deletePerson,
+    required TResult Function(Person person) updatePerson,
   }) {
-    return updatePerson(person, idDepartment);
+    return updatePerson(person);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String idDepartment)? load,
-    TResult? Function(Person person, String idDepartment)? addPerson,
-    TResult? Function(String id, String idDepartment)? deletePerson,
-    TResult? Function(Person person, String idDepartment)? updatePerson,
+    TResult? Function()? load,
+    TResult? Function(Person person)? addPerson,
+    TResult? Function(String id)? deletePerson,
+    TResult? Function(Person person)? updatePerson,
   }) {
-    return updatePerson?.call(person, idDepartment);
+    return updatePerson?.call(person);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String idDepartment)? load,
-    TResult Function(Person person, String idDepartment)? addPerson,
-    TResult Function(String id, String idDepartment)? deletePerson,
-    TResult Function(Person person, String idDepartment)? updatePerson,
+    TResult Function()? load,
+    TResult Function(Person person)? addPerson,
+    TResult Function(String id)? deletePerson,
+    TResult Function(Person person)? updatePerson,
     required TResult orElse(),
   }) {
     if (updatePerson != null) {
-      return updatePerson(person, idDepartment);
+      return updatePerson(person);
     }
     return orElse();
   }
@@ -753,17 +650,13 @@ class _$UpdatePersonImpl implements _UpdatePerson {
 }
 
 abstract class _UpdatePerson implements PersonEvent {
-  const factory _UpdatePerson(
-      {required final Person person,
-      required final String idDepartment}) = _$UpdatePersonImpl;
+  const factory _UpdatePerson({required final Person person}) =
+      _$UpdatePersonImpl;
 
   Person get person;
-  @override
-  String get idDepartment;
 
   /// Create a copy of PersonEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UpdatePersonImplCopyWith<_$UpdatePersonImpl> get copyWith =>
       throw _privateConstructorUsedError;

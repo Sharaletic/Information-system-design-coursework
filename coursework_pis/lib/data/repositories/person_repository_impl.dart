@@ -32,6 +32,7 @@ class PersonRepositoryImpl implements PersonRepository {
   Future<Either<Failure, Unit>> addPerson({required PersonDto dto}) async {
     try {
       final json = dto.toJson();
+      json.remove('id');
       await supabaseClient.from(TableNames.personTable).insert(json);
       return right(unit);
     } catch (e) {
@@ -56,7 +57,7 @@ class PersonRepositoryImpl implements PersonRepository {
       await supabaseClient
           .from(TableNames.personTable)
           .update(json)
-          .eq('id', dto.id);
+          .eq('id', dto.id!);
       return right(unit);
     } catch (e) {
       return left(Failure(message: e.toString()));

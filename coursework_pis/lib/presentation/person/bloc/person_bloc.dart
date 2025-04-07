@@ -22,7 +22,8 @@ class PersonBloc extends Bloc<PersonEvent, PersonState> {
 
   Future<void> _onLoad(_Load event, Emitter<PersonState> emit) async {
     emit(PersonState.loading());
-    final result = await repository.getPerson(idDepartment: event.idDepartment);
+    final result = await repository.getPerson(
+        idDepartment: '7c898031-adf8-4caf-978b-711644a67c76');
     result.fold(
         (failure) => emit(PersonState.failure(message: failure.message)),
         (person) => emit(PersonState.loaded(person: person)));
@@ -33,7 +34,7 @@ class PersonBloc extends Bloc<PersonEvent, PersonState> {
         await repository.addPerson(dto: PersonDto.fromDomain(event.person));
     result.fold(
         (failure) => emit(PersonState.failure(message: failure.message)),
-        (unit) => add(PersonEvent.load(idDepartment: event.idDepartment)));
+        (unit) => add(PersonEvent.load()));
   }
 
   Future<void> _onDeletePerson(
@@ -41,7 +42,7 @@ class PersonBloc extends Bloc<PersonEvent, PersonState> {
     final result = await repository.deletePerson(id: event.id);
     result.fold(
         (failure) => emit(PersonState.failure(message: failure.message)),
-        (unit) => add(PersonEvent.load(idDepartment: event.idDepartment)));
+        (unit) => add(PersonEvent.load()));
   }
 
   Future<void> _onUpdatePerson(
@@ -50,6 +51,6 @@ class PersonBloc extends Bloc<PersonEvent, PersonState> {
         await repository.updatePerson(dto: PersonDto.fromDomain(event.person));
     result.fold(
         (failure) => emit(PersonState.failure(message: failure.message)),
-        (unit) => add(PersonEvent.load(idDepartment: event.idDepartment)));
+        (unit) => add(PersonEvent.load()));
   }
 }

@@ -1,10 +1,16 @@
 import 'package:coursework_pis/core/dependency/dependencies.dart';
+import 'package:coursework_pis/core/theme/app_theme.dart';
+import 'package:coursework_pis/presentation/person/bloc/person_bloc.dart';
+import 'package:coursework_pis/presentation/person/pages/person_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   await setup();
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  runApp(MultiBlocProvider(providers: [
+    BlocProvider(create: (_) => getIt<PersonBloc>()..add(PersonEvent.load()))
+  ], child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -13,8 +19,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      //home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      theme: AppTheme.lightTheme,
+      debugShowCheckedModeBanner: false,
+      home: const PersonPage(),
     );
   }
 }
