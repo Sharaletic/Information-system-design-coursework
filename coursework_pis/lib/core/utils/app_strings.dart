@@ -9,4 +9,5 @@ class AppStrings {
   static const edit = 'Редактировать';
   static const save = 'Сохранить';
   static const cancellation = 'Отмена';
+  static const serverExceptionMessage = 'Отсутствует интернет';
 }
