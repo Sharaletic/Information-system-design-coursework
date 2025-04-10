@@ -33,6 +33,7 @@ class _PersonPageState extends State<PersonPage> {
                       ),
                   loaded: (value) {
                     return ListView.separated(
+                      padding: EdgeInsets.only(bottom: _getBottomPadding()),
                       itemBuilder: (BuildContext context, int index) {
                         return ContainerWidget(
                           person: value.person[index],
@@ -59,7 +60,7 @@ class _PersonPageState extends State<PersonPage> {
                           return AddPersonPage();
                         });
                   },
-                  color: AppColors.primaryColor,
+                  color: AppColors.whiteColor,
                   title: AppStrings.add,
                 ),
               ),
@@ -68,5 +69,11 @@ class _PersonPageState extends State<PersonPage> {
         ),
       ),
     );
+  }
+
+  double _getBottomPadding() {
+    final safeBottomPadding = MediaQuery.of(context).padding.bottom;
+    final bottomPadding = (safeBottomPadding + 8) * 2 + 50;
+    return bottomPadding;
   }
 }

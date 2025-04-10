@@ -1,7 +1,7 @@
 import 'package:coursework_pis/core/dependency/dependencies.dart';
+import 'package:coursework_pis/core/routes/routes.dart';
 import 'package:coursework_pis/core/theme/app_theme.dart';
 import 'package:coursework_pis/presentation/person/bloc/person_bloc.dart';
-import 'package:coursework_pis/presentation/person/pages/person_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,10 +18,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       theme: AppTheme.lightTheme,
       debugShowCheckedModeBanner: false,
-      home: const PersonPage(),
+      routerConfig: router,
     );
   }
 }
