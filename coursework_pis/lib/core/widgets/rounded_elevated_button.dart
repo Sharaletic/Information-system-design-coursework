@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
 class RoundedElevatedButton extends StatelessWidget {
-  const RoundedElevatedButton(
-      {super.key,
-      required this.onPressed,
-      required this.color,
-      required this.title});
+  const RoundedElevatedButton({
+    super.key,
+    required this.onPressed,
+    required this.color,
+    required this.widget,
+  });
   final VoidCallback onPressed;
   final Color color;
-  final String title;
+  final Widget widget;
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +25,7 @@ class RoundedElevatedButton extends StatelessWidget {
           ),
         ),
       ),
-      child: Text(
-        title,
-        style: Theme.of(context).textTheme.labelMedium,
-      ),
+      child: widget,
     );
   }
 }

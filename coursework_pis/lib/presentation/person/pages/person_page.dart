@@ -37,6 +37,7 @@ class _PersonPageState extends State<PersonPage> {
                       itemBuilder: (BuildContext context, int index) {
                         return ContainerWidget(
                           person: value.person[index],
+                          index: index,
                         );
                       },
                       separatorBuilder: (BuildContext context, int index) {
@@ -61,7 +62,7 @@ class _PersonPageState extends State<PersonPage> {
                         });
                   },
                   color: AppColors.whiteColor,
-                  title: AppStrings.add,
+                  widget: Text(AppStrings.add),
                 ),
               ),
             ),

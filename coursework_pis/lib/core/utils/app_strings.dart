@@ -1,4 +1,5 @@
 class AppStrings {
+  static const headOfDepartment = 'Заведующий кафедрой';
   static const teacher = 'Преподаватели';
   static const fullName = 'ФИО';
   static const post = 'Должность';
@@ -10,4 +11,9 @@ class AppStrings {
   static const save = 'Сохранить';
   static const cancellation = 'Отмена';
   static const serverExceptionMessage = 'Отсутствует интернет';
+  static const login = 'Логин';
+  static const password = 'Пароль';
+  static const required = 'Обязательные поля';
+  static const providedValidEmail = 'Укажите действительню почту';
+  static const sigIn = 'Войти';
 }

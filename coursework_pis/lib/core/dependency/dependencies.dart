@@ -1,19 +1,28 @@
 import 'package:coursework_pis/core/secrets/secrets.dart';
+import 'package:coursework_pis/data/datasource/auth_remote_data_source.dart';
+import 'package:coursework_pis/data/repositories/auth_repository_impl.dart';
 import 'package:coursework_pis/data/repositories/person_repository_impl.dart';
+import 'package:coursework_pis/data/services/user_service.dart';
+import 'package:coursework_pis/domain/models/person.dart';
+import 'package:coursework_pis/domain/repositories/auth_repository.dart';
 import 'package:coursework_pis/domain/repositories/person_repository.dart';
+import 'package:coursework_pis/domain/usecases/getPerson.dart';
+import 'package:coursework_pis/presentation/auth/bloc/auth_bloc.dart';
 import 'package:coursework_pis/presentation/person/bloc/person_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../usecases/usecase.dart';
+
 final getIt = GetIt.instance;
 
 Future<void> setup() async {
   final supabase = await Supabase.initialize(
-    url: AppSecrets.url,
-    anonKey: AppSecrets.anonKey,
-  );
+      url: AppSecrets.url, anonKey: AppSecrets.anonKey);
   getIt.registerLazySingleton<SupabaseClient>(() => supabase.client);
+
+  _initAuth();
 
   final SharedPreferences preferences = await SharedPreferences.getInstance();
   getIt.registerLazySingleton<SharedPreferences>(() => preferences);
@@ -21,10 +30,30 @@ Future<void> setup() async {
   _initPerson();
 }
 
-void _initPerson() {
-  getIt.registerLazySingleton<PersonRepository>(
-      () => PersonRepositoryImpl(supabaseClient: getIt<SupabaseClient>()));
+void _initAuth() {
+  getIt.registerLazySingleton<AuthRemoteDataSource>(
+      () => AuthRemoteDataSourceImpl(supabaseClient: getIt<SupabaseClient>()));
 
-  getIt.registerLazySingleton<PersonBloc>(
-      () => PersonBloc(repository: getIt<PersonRepository>()));
+  getIt.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(
+      remoteDataSource: getIt<AuthRemoteDataSource>(),
+      supabaseClient: getIt<SupabaseClient>()));
+
+  getIt.registerLazySingleton<AuthBloc>(
+      () => AuthBloc(repository: getIt<AuthRepository>()));
+}
+
+void _initPerson() {
+  getIt.registerLazySingleton<UserService>(
+      () => UserServiceImpl(supabaseClient: getIt<SupabaseClient>()));
+
+  getIt.registerLazySingleton<PersonRepository>(() => PersonRepositoryImpl(
+      supabaseClient: getIt<SupabaseClient>(),
+      userService: getIt<UserService>()));
+
+  getIt.registerLazySingleton<UseCase<List<Person>>>(
+      () => GetPerson(personRepository: getIt<PersonRepository>()));
+
+  getIt.registerLazySingleton<PersonBloc>(() => PersonBloc(
+      repository: getIt<PersonRepository>(),
+      getPerson: getIt<UseCase<List<Person>>>()));
 }

@@ -49,79 +49,82 @@ class _EditPersonPageState extends State<EditPersonPage> {
     return Form(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 30.0),
-        child: Column(
-          children: [
-            CustomTextFormField(
-              controller: _nameController,
-              hintText: AppStrings.fullName,
-            ),
-            const SizedBox(
-              height: 10.0,
-            ),
-            CustomTextFormField(
-              controller: _postController,
-              hintText: AppStrings.post,
-            ),
-            const SizedBox(
-              height: 10.0,
-            ),
-            CustomTextFormField(
-              controller: _academicDegreeController,
-              hintText: AppStrings.academicDegree,
-            ),
-            const SizedBox(
-              height: 10.0,
-            ),
-            CustomTextFormField(
-              controller: _workExperienceController,
-              hintText: AppStrings.workExperience,
-            ),
-            const SizedBox(
-              height: 20.0,
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: RoundedElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    color: AppColors.primaryColor,
-                    title: AppStrings.cancellation,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              CustomTextFormField(
+                controller: _nameController,
+                hintText: AppStrings.fullName,
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              CustomTextFormField(
+                controller: _postController,
+                hintText: AppStrings.post,
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              CustomTextFormField(
+                controller: _academicDegreeController,
+                hintText: AppStrings.academicDegree,
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              CustomTextFormField(
+                controller: _workExperienceController,
+                hintText: AppStrings.workExperience,
+              ),
+              const SizedBox(
+                height: 20.0,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: RoundedElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      color: AppColors.primaryColor,
+                      widget: Text(AppStrings.cancellation),
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  width: 10.0,
-                ),
-                Expanded(
-                  child: RoundedElevatedButton(
-                    onPressed: () {
-                      context.read<PersonBloc>().add(
-                            PersonEvent.updatePerson(
-                              person: createPerson(),
-                            ),
-                          );
-                    },
-                    color: AppColors.primaryColor,
-                    title: AppStrings.save,
+                  const SizedBox(
+                    width: 10.0,
                   ),
-                ),
-              ],
-            ),
-          ],
+                  Expanded(
+                    child: RoundedElevatedButton(
+                      onPressed: () {
+                        context.read<PersonBloc>().add(
+                              PersonEvent.updatePerson(
+                                person: createPerson(),
+                              ),
+                            );
+                      },
+                      color: AppColors.primaryColor,
+                      widget: Text(AppStrings.save),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
   Person createPerson() {
+    print(widget.person.id);
     Person person = Person(
       id: widget.person.id,
       fullName: _nameController.text,
       post: _postController.text,
       academicDegree: _academicDegreeController.text,
       workExperience: _workExperienceController.text,
-      idDepartment: widget.person.idDepartment,
+      departmentId: widget.person.departmentId,
       status: widget.person.status,
     );
     return person;

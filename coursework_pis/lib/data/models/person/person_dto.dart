@@ -10,8 +10,8 @@ class PersonDto {
       required this.post,
       required this.academicDegree,
       required this.workExperience,
-      this.idDepartment,
-      this.status});
+      this.departmentId,
+      required this.status});
   final String? id;
   @JsonKey(name: 'full_name')
   final String fullName;
@@ -20,9 +20,15 @@ class PersonDto {
   final String academicDegree;
   @JsonKey(name: 'work_experience')
   final String workExperience;
-  @JsonKey(name: 'id_department')
-  final String? idDepartment;
-  final String? status;
+  @JsonKey(name: 'department_id')
+  String? departmentId;
+  String? status;
+
+  StatusPerson getStatus(String? status) {
+    return StatusPerson.values.firstWhere(
+      (item) => item.value == status,
+    );
+  }
 
   Person toDomain() => Person(
         id: id,
@@ -30,8 +36,8 @@ class PersonDto {
         post: post,
         academicDegree: academicDegree,
         workExperience: workExperience,
-        idDepartment: idDepartment,
-        status: status,
+        departmentId: departmentId,
+        status: getStatus(status),
       );
 
   factory PersonDto.fromDomain(Person object) => PersonDto(
@@ -40,8 +46,8 @@ class PersonDto {
         post: object.post,
         academicDegree: object.academicDegree,
         workExperience: object.workExperience,
-        idDepartment: object.idDepartment,
-        status: object.status,
+        departmentId: object.departmentId,
+        status: object.status.value,
       );
 
   Map<String, dynamic> toJson() => _$PersonDtoToJson(this);

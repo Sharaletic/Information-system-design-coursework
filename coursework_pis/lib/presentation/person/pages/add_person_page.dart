@@ -1,3 +1,4 @@
+import 'package:coursework_pis/core/custom_snack_bar.dart';
 import 'package:coursework_pis/core/theme/app_colors.dart';
 import 'package:coursework_pis/core/utils/app_strings.dart';
 import 'package:coursework_pis/core/widgets/custom_text_form_field.dart';
@@ -32,68 +33,86 @@ class _AddPersonPageState extends State<AddPersonPage> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 30.0),
-        child: Column(
-          children: [
-            CustomTextFormField(
-              controller: _nameController,
-              hintText: AppStrings.fullName,
-            ),
-            const SizedBox(
-              height: 10.0,
-            ),
-            CustomTextFormField(
-              controller: _postController,
-              hintText: AppStrings.post,
-            ),
-            const SizedBox(
-              height: 10.0,
-            ),
-            CustomTextFormField(
-              controller: _academicDegreeController,
-              hintText: AppStrings.academicDegree,
-            ),
-            const SizedBox(
-              height: 10.0,
-            ),
-            CustomTextFormField(
-              controller: _workExperienceController,
-              hintText: AppStrings.workExperience,
-            ),
-            const SizedBox(
-              height: 20.0,
-            ),
-            Row(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 30.0),
+          child: BlocListener<PersonBloc, PersonState>(
+            listener: (context, state) {
+              state.map(
+                failure: (state) =>
+                    CustomSnackBar.showError(context, state.message),
+                loading: (_) {},
+                loaded: (_) {},
+              );
+            },
+            child: Column(
               children: [
-                Expanded(
-                  child: RoundedElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    color: AppColors.primaryColor,
-                    title: AppStrings.cancellation,
-                  ),
+                CustomTextFormField(
+                  controller: _nameController,
+                  hintText: AppStrings.fullName,
                 ),
                 const SizedBox(
-                  width: 10.0,
+                  height: 10.0,
                 ),
-                Expanded(
-                  child: RoundedElevatedButton(
-                    onPressed: () {
-                      context.read<PersonBloc>().add(
-                            PersonEvent.addPerson(
-                              person: createPerson(),
-                            ),
+                CustomTextFormField(
+                  controller: _postController,
+                  hintText: AppStrings.post,
+                ),
+                const SizedBox(
+                  height: 10.0,
+                ),
+                CustomTextFormField(
+                  controller: _academicDegreeController,
+                  hintText: AppStrings.academicDegree,
+                ),
+                const SizedBox(
+                  height: 10.0,
+                ),
+                CustomTextFormField(
+                  controller: _workExperienceController,
+                  hintText: AppStrings.workExperience,
+                ),
+                const SizedBox(
+                  height: 20.0,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: RoundedElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        color: AppColors.primaryColor,
+                        widget: Text(AppStrings.cancellation),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10.0,
+                    ),
+                    Expanded(
+                      child: RoundedElevatedButton(
+                        onPressed: () {
+                          context.read<PersonBloc>().add(
+                                PersonEvent.addPerson(
+                                  person: createPerson(),
+                                ),
+                              );
+                        },
+                        color: AppColors.primaryColor,
+                        widget: BlocBuilder<PersonBloc, PersonState>(
+                            builder: (context, state) {
+                          return state.maybeMap(
+                            loading: (_) => CircularProgressIndicator(),
+                            orElse: () => Text(AppStrings.save),
                           );
-                    },
-                    color: AppColors.primaryColor,
-                    title: AppStrings.save,
-                  ),
+                        }),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
+          ),
         ),
       ),
     );
@@ -105,8 +124,8 @@ class _AddPersonPageState extends State<AddPersonPage> {
       post: _postController.text,
       academicDegree: _academicDegreeController.text,
       workExperience: _workExperienceController.text,
-      idDepartment: '7c898031-adf8-4caf-978b-711644a67c76',
-      status: 'преподаватель',
+      departmentId: '7c898031-adf8-4caf-978b-711644a67c76',
+      status: StatusPerson.teacher,
     );
     return person;
   }

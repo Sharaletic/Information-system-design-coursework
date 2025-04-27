@@ -12,8 +12,10 @@ class ContainerWidget extends StatelessWidget {
   const ContainerWidget({
     super.key,
     required this.person,
+    required this.index,
   });
   final Person person;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +39,7 @@ class ContainerWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          if (index == 0) Text(AppStrings.headOfDepartment),
           RichTextWidget(
               title: AppStrings.fullName, definition: person.fullName),
           RichTextWidget(title: AppStrings.post, definition: person.post),
@@ -63,23 +66,25 @@ class ContainerWidget extends StatelessWidget {
                         });
                   },
                   color: Colors.white,
-                  title: AppStrings.edit,
+                  widget: Text(AppStrings.edit),
                 ),
               ),
-              SizedBox(
-                width: 5,
-              ),
-              Expanded(
-                child: RoundedElevatedButton(
-                  onPressed: () {
-                    context.read<PersonBloc>().add(
-                          PersonEvent.deletePerson(id: person.id!),
-                        );
-                  },
-                  color: Colors.white,
-                  title: AppStrings.delete,
+              if (index != 0)
+                SizedBox(
+                  width: 5,
                 ),
-              ),
+              if (index != 0)
+                Expanded(
+                  child: RoundedElevatedButton(
+                    onPressed: () {
+                      context.read<PersonBloc>().add(
+                            PersonEvent.deletePerson(id: person.id!),
+                          );
+                    },
+                    color: Colors.white,
+                    widget: Text(AppStrings.delete),
+                  ),
+                ),
             ],
           ),
         ],

@@ -42,7 +42,7 @@ class _ScaffoldWithNavbarState extends State<ScaffoldWithNavbar> {
               decoration: BoxDecoration(
                 color: AppColors.backGroundColor,
                 borderRadius: BorderRadius.all(
-                  Radius.circular(24),
+                  Radius.circular(50),
                 ),
                 boxShadow: [
                   BoxShadow(

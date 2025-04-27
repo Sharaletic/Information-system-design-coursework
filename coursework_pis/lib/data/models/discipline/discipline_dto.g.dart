@@ -1,19 +1,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'person_auth_dto.dart';
+part of 'discipline_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-PersonAuthDto _$PersonAuthDtoFromJson(Map<String, dynamic> json) =>
-    PersonAuthDto(
+DisciplineDto _$DisciplineDtoFromJson(Map<String, dynamic> json) =>
+    DisciplineDto(
       id: json['id'] as String,
-      login: json['email'] as String,
+      disciplineTitle: json['disciplineTitle'] as String,
     );
 
-Map<String, dynamic> _$PersonAuthDtoToJson(PersonAuthDto instance) =>
+Map<String, dynamic> _$DisciplineDtoToJson(DisciplineDto instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'email': instance.login,
+      'disciplineTitle': instance.disciplineTitle,
     };
