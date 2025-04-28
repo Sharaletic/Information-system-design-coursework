@@ -16,4 +16,5 @@ class AppStrings {
   static const required = 'Обязательные поля';
   static const providedValidEmail = 'Укажите действительню почту';
   static const sigIn = 'Войти';
+  static const email = '@mail.com';
 }

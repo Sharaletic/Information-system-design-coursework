@@ -1,5 +1,4 @@
 import 'package:coursework_pis/core/usecases/usecase.dart';
-import 'package:coursework_pis/data/models/person/person_dto.dart';
 import 'package:coursework_pis/domain/models/person.dart';
 import 'package:coursework_pis/domain/repositories/person_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -32,7 +31,7 @@ class PersonBloc extends Bloc<PersonEvent, PersonState> {
   }
 
   Future<void> _onAddPerson(_AddPerson event, Emitter<PersonState> emit) async {
-    final result = await repository.addPerson(person: event.person);
+    final result = await repository.addUser(person: event.person);
     result.fold(
         (failure) => emit(PersonState.failure(message: failure.message)),
         (unit) => add(PersonEvent.load()));

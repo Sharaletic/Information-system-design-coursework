@@ -20,6 +20,8 @@ class _AddPersonPageState extends State<AddPersonPage> {
   final _postController = TextEditingController();
   final _academicDegreeController = TextEditingController();
   final _workExperienceController = TextEditingController();
+  final _loginController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
   void dispose() {
@@ -73,6 +75,20 @@ class _AddPersonPageState extends State<AddPersonPage> {
                   hintText: AppStrings.workExperience,
                 ),
                 const SizedBox(
+                  height: 10.0,
+                ),
+                CustomTextFormField(
+                  controller: _loginController,
+                  hintText: AppStrings.login,
+                ),
+                const SizedBox(
+                  height: 10.0,
+                ),
+                CustomTextFormField(
+                  controller: _passwordController,
+                  hintText: AppStrings.password,
+                ),
+                const SizedBox(
                   height: 20.0,
                 ),
                 Row(
@@ -124,7 +140,8 @@ class _AddPersonPageState extends State<AddPersonPage> {
       post: _postController.text,
       academicDegree: _academicDegreeController.text,
       workExperience: _workExperienceController.text,
-      departmentId: '7c898031-adf8-4caf-978b-711644a67c76',
+      login: _loginController.text,
+      password: _passwordController.text,
       status: StatusPerson.teacher,
     );
     return person;

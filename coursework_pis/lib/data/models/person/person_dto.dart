@@ -12,7 +12,7 @@ class PersonDto {
       required this.workExperience,
       this.departmentId,
       required this.status});
-  final String? id;
+  String? id;
   @JsonKey(name: 'full_name')
   final String fullName;
   final String post;

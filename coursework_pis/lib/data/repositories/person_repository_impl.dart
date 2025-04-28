@@ -1,4 +1,5 @@
 import 'package:coursework_pis/core/error/failure.dart';
+import 'package:coursework_pis/core/utils/app_strings.dart';
 import 'package:coursework_pis/core/utils/table_names.dart';
 import 'package:coursework_pis/data/models/person/person_dto.dart';
 import 'package:coursework_pis/data/services/user_service.dart';
@@ -44,7 +45,8 @@ class PersonRepositoryImpl implements PersonRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> addPerson({required Person person}) async {
+  Future<Either<Failure, Unit>> addPerson(
+      {required Person person, required String userId}) async {
     try {
       final result = await userService.getCurrentUserDepartment();
 
@@ -52,11 +54,25 @@ class PersonRepositoryImpl implements PersonRepository {
           (departmentId) async {
         final dto = PersonDto.fromDomain(person);
         dto.departmentId = departmentId;
+        dto.id = userId;
         final json = dto.toJson();
-        json.remove('id');
         await supabaseClient.from(TableNames.personTable).insert(json);
         return right(unit);
       });
+    } catch (e) {
+      return left(Failure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> addUser({required Person person}) async {
+    try {
+      final response = await supabaseClient.auth.signUp(
+          password: person.password!,
+          email: '${person.login}${AppStrings.email}');
+      final newUserId = response.user!.id;
+      addPerson(person: person, userId: newUserId);
+      return right(unit);
     } catch (e) {
       return left(Failure(message: e.toString()));
     }
