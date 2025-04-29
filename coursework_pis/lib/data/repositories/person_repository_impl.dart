@@ -4,8 +4,6 @@ import 'package:coursework_pis/core/utils/table_names.dart';
 import 'package:coursework_pis/data/models/person/person_dto.dart';
 import 'package:coursework_pis/data/services/user_service.dart';
 import 'package:coursework_pis/domain/models/person.dart';
-import 'package:coursework_pis/domain/models/person_auth.dart';
-import 'package:coursework_pis/domain/repositories/auth_repository.dart';
 import 'package:coursework_pis/domain/repositories/person_repository.dart';
 import 'package:fpdart/src/either.dart';
 import 'package:fpdart/src/unit.dart';

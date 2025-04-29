@@ -13,7 +13,7 @@ PersonDto _$PersonDtoFromJson(Map<String, dynamic> json) => PersonDto(
       academicDegree: json['academic_degree'] as String,
       workExperience: json['work_experience'] as String,
       departmentId: json['department_id'] as String?,
-      status: json['status'] as String,
+      status: json['status'] as String?,
     );
 
 Map<String, dynamic> _$PersonDtoToJson(PersonDto instance) => <String, dynamic>{

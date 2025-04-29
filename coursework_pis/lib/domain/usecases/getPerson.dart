@@ -1,10 +1,8 @@
 import 'package:coursework_pis/core/error/failure.dart';
 import 'package:coursework_pis/core/usecases/usecase.dart';
-import 'package:coursework_pis/data/models/person/person_dto.dart';
 import 'package:coursework_pis/domain/models/person.dart';
 import 'package:coursework_pis/domain/repositories/person_repository.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class GetPerson extends UseCase<List<Person>> {
   GetPerson({
