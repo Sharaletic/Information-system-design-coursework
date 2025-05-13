@@ -25,9 +25,15 @@ class RichTextWidget extends StatelessWidget {
             title,
             style: Theme.of(context).textTheme.labelMedium,
           ),
-          Text(
-            definition,
-            style: Theme.of(context).textTheme.bodyMedium,
+          Expanded(
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Text(
+                definition,
+                textAlign: TextAlign.end,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+            ),
           )
         ],
       ),

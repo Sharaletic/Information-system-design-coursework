@@ -31,10 +31,11 @@ class PersonBloc extends Bloc<PersonEvent, PersonState> {
   }
 
   Future<void> _onAddPerson(_AddPerson event, Emitter<PersonState> emit) async {
-    final result = await repository.addUser(person: event.person);
-    result.fold(
-        (failure) => emit(PersonState.failure(message: failure.message)),
-        (unit) => add(PersonEvent.load()));
+    final result = await repository.addPerson(person: event.person);
+    result.fold((failure) {
+      emit(PersonState.failure(message: failure.message));
+      add(PersonEvent.load());
+    }, (unit) => add(PersonEvent.load()));
   }
 
   Future<void> _onDeletePerson(

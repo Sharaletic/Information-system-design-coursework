@@ -1,30 +1,37 @@
 import 'package:coursework_pis/core/error/server_exception.dart';
 import 'package:coursework_pis/data/models/person_auth/person_auth_dto.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../core/utils/table_names.dart';
+import '../models/person/person_dto.dart';
+
 abstract interface class AuthRemoteDataSource {
-  Future<PersonAuthDto> login(
-      {required String login, required String password});
+  Future<void> login({required String login, required String password});
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
-  AuthRemoteDataSourceImpl({required this.supabaseClient});
+  AuthRemoteDataSourceImpl({
+    required this.supabaseClient,
+    required this.sharedPreferences,
+  });
   final SupabaseClient supabaseClient;
+  final SharedPreferences sharedPreferences;
 
   @override
-  Future<PersonAuthDto> login(
-      {required String login, required String password}) async {
+  Future<void> login({required String login, required String password}) async {
     try {
-      final response = await supabaseClient.auth
-          .signInWithPassword(email: login, password: password);
-      if (response.user == null) {
+      final response = await supabaseClient
+          .from(TableNames.personTable)
+          .select()
+          .match({'login': login, 'password': password}).single();
+
+      sharedPreferences.setString('id', response['id']);
+    } catch (e) {
+      if (e is PostgrestException && e.code == 'PGRST116') {
         throw ServerException('Пользователь не найден');
       }
-
-      final json = response.session!.user.toJson();
-      return PersonAuthDto.fromJson(json);
-    } catch (e) {
-      throw ServerException(e.toString());
+      throw ServerException('Проблемы с сетью');
     }
   }
 }

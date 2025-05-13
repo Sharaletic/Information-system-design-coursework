@@ -1,12 +1,16 @@
-import 'package:coursework_pis/core/custom_snack_bar.dart';
+import 'package:coursework_pis/core/auxiliary_data/academic_degree.dart';
 import 'package:coursework_pis/core/theme/app_colors.dart';
 import 'package:coursework_pis/core/utils/app_strings.dart';
 import 'package:coursework_pis/core/widgets/custom_text_form_field.dart';
+import 'package:coursework_pis/core/widgets/drop_down_button.dart';
 import 'package:coursework_pis/core/widgets/rounded_elevated_button.dart';
 import 'package:coursework_pis/domain/models/person.dart';
 import 'package:coursework_pis/presentation/person/bloc/person_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../core/auxiliary_data/post_items.dart';
+import '../../../core/widgets/custom_snackbar.dart';
+import '../../../core/widgets/drop_down_button.dart';
 
 class AddPersonPage extends StatefulWidget {
   const AddPersonPage({super.key});
@@ -16,12 +20,16 @@ class AddPersonPage extends StatefulWidget {
 }
 
 class _AddPersonPageState extends State<AddPersonPage> {
+  final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _postController = TextEditingController();
   final _academicDegreeController = TextEditingController();
   final _workExperienceController = TextEditingController();
   final _loginController = TextEditingController();
   final _passwordController = TextEditingController();
+
+  String? postDropdownValue;
+  String? academicDegreeDropdownValue;
 
   @override
   void dispose() {
@@ -35,9 +43,13 @@ class _AddPersonPageState extends State<AddPersonPage> {
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: _formKey,
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 30.0),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 16.0,
+            vertical: 30.0,
+          ),
           child: BlocListener<PersonBloc, PersonState>(
             listener: (context, state) {
               state.map(
@@ -51,42 +63,97 @@ class _AddPersonPageState extends State<AddPersonPage> {
               children: [
                 CustomTextFormField(
                   controller: _nameController,
+                  labelText: AppStrings.fullName,
                   hintText: AppStrings.fullName,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return AppStrings.required;
+                    }
+                    return null;
+                  },
                 ),
                 const SizedBox(
                   height: 10.0,
                 ),
-                CustomTextFormField(
-                  controller: _postController,
-                  hintText: AppStrings.post,
+                DropDownButton<String>(
+                  items: PostItems.postItems
+                      .map((value) => DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value,
+                                style: TextTheme.of(context).bodyLarge),
+                          ))
+                      .toList(),
+                  dropDownValue: postDropdownValue!,
+                  onChanged: (value) {
+                    setState(() {
+                      postDropdownValue = value!;
+                    });
+                  },
+                  hintText: AppStrings.discipline,
                 ),
                 const SizedBox(
                   height: 10.0,
                 ),
-                CustomTextFormField(
-                  controller: _academicDegreeController,
-                  hintText: AppStrings.academicDegree,
+                DropDownButton<String>(
+                  items: AcademicDegree.academicDegreeItems
+                      .map((value) => DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value,
+                                style: TextTheme.of(context).bodyLarge),
+                          ))
+                      .toList(),
+                  dropDownValue: academicDegreeDropdownValue!,
+                  onChanged: (value) {
+                    setState(() {
+                      academicDegreeDropdownValue = value!;
+                    });
+                  },
+                  hintText: AppStrings.discipline,
                 ),
                 const SizedBox(
                   height: 10.0,
                 ),
                 CustomTextFormField(
                   controller: _workExperienceController,
+                  labelText: AppStrings.workExperience,
                   hintText: AppStrings.workExperience,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return AppStrings.required;
+                    }
+                    if (int.tryParse(value) == null) {
+                      return AppStrings.wrongType;
+                    }
+                    return null;
+                  },
                 ),
                 const SizedBox(
                   height: 10.0,
                 ),
                 CustomTextFormField(
                   controller: _loginController,
+                  labelText: AppStrings.login,
                   hintText: AppStrings.login,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return AppStrings.required;
+                    }
+                    return null;
+                  },
                 ),
                 const SizedBox(
                   height: 10.0,
                 ),
                 CustomTextFormField(
                   controller: _passwordController,
+                  labelText: AppStrings.password,
                   hintText: AppStrings.password,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return AppStrings.required;
+                    }
+                    return null;
+                  },
                 ),
                 const SizedBox(
                   height: 20.0,
@@ -108,11 +175,13 @@ class _AddPersonPageState extends State<AddPersonPage> {
                     Expanded(
                       child: RoundedElevatedButton(
                         onPressed: () {
-                          context.read<PersonBloc>().add(
-                                PersonEvent.addPerson(
-                                  person: createPerson(),
-                                ),
-                              );
+                          if (_formKey.currentState!.validate()) {
+                            context.read<PersonBloc>().add(
+                                  PersonEvent.addPerson(
+                                    person: createPerson(),
+                                  ),
+                                );
+                          }
                         },
                         color: AppColors.primaryColor,
                         widget: BlocBuilder<PersonBloc, PersonState>(
@@ -137,8 +206,8 @@ class _AddPersonPageState extends State<AddPersonPage> {
   Person createPerson() {
     Person person = Person(
       fullName: _nameController.text,
-      post: _postController.text,
-      academicDegree: _academicDegreeController.text,
+      post: postDropdownValue,
+      academicDegree: academicDegreeDropdownValue,
       workExperience: _workExperienceController.text,
       login: _loginController.text,
       password: _passwordController.text,

@@ -1,6 +1,7 @@
 import 'package:coursework_pis/core/error/failure.dart';
 import 'package:coursework_pis/core/utils/table_names.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract interface class UserService {
@@ -8,8 +9,12 @@ abstract interface class UserService {
 }
 
 class UserServiceImpl implements UserService {
-  UserServiceImpl({required this.supabaseClient});
+  UserServiceImpl({
+    required this.supabaseClient,
+    required this.sharedPreferences,
+  });
   final SupabaseClient supabaseClient;
+  final SharedPreferences sharedPreferences;
   String cache = '';
 
   @override
@@ -21,7 +26,7 @@ class UserServiceImpl implements UserService {
         final departmentId = await supabaseClient
             .from(TableNames.personTable)
             .select('department_id')
-            .eq('id', supabaseClient.auth.currentUser!.id)
+            .eq('id', sharedPreferences.getString('id')!)
             .single();
 
         final result = departmentId['department_id'];

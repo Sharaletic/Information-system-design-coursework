@@ -1,4 +1,3 @@
-import 'package:coursework_pis/domain/models/person_auth.dart';
 import 'package:coursework_pis/domain/repositories/auth_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -21,6 +20,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         await repository.login(login: event.login, password: event.password);
 
     result.fold((failure) => emit(AuthState.failure(message: failure.message)),
-        (person) => emit(AuthState.success(personAuth: person)));
+        (person) => emit(AuthState.success()));
   }
 }

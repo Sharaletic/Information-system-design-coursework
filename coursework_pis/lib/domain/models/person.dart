@@ -3,20 +3,20 @@ class Person {
     this.id,
     required this.fullName,
     required this.post,
-    required this.academicDegree,
-    required this.workExperience,
+    this.academicDegree,
+    this.workExperience,
     this.departmentId,
-    required this.status,
+    this.status,
     this.login,
     this.password,
   });
   final String? id;
   final String fullName;
-  final String post;
-  final String academicDegree;
-  final String workExperience;
+  final String? post;
+  final String? academicDegree;
+  final String? workExperience;
   final String? departmentId;
-  final StatusPerson status;
+  final StatusPerson? status;
   final String? login;
   final String? password;
 }

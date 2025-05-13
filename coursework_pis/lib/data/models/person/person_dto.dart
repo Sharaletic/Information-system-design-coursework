@@ -4,30 +4,37 @@ part 'person_dto.g.dart';
 
 @JsonSerializable()
 class PersonDto {
-  PersonDto(
-      {this.id,
-      required this.fullName,
-      required this.post,
-      required this.academicDegree,
-      required this.workExperience,
-      this.departmentId,
-      required this.status});
+  PersonDto({
+    this.id,
+    required this.fullName,
+    required this.post,
+    this.academicDegree,
+    this.workExperience,
+    this.departmentId,
+    this.status,
+    this.login,
+    this.password,
+  });
   String? id;
   @JsonKey(name: 'full_name')
   final String fullName;
-  final String post;
+  final String? post;
   @JsonKey(name: 'academic_degree')
-  final String academicDegree;
+  final String? academicDegree;
   @JsonKey(name: 'work_experience')
-  final String workExperience;
+  final String? workExperience;
   @JsonKey(name: 'department_id')
   String? departmentId;
   String? status;
+  final String? login;
+  final String? password;
 
-  StatusPerson getStatus(String? status) {
-    return StatusPerson.values.firstWhere(
-      (item) => item.value == status,
-    );
+  StatusPerson? getStatus(String? status) {
+    return status != null
+        ? StatusPerson.values.firstWhere(
+            (item) => item.value == status,
+          )
+        : null;
   }
 
   Person toDomain() => Person(
@@ -38,6 +45,8 @@ class PersonDto {
         workExperience: workExperience,
         departmentId: departmentId,
         status: getStatus(status),
+        login: login,
+        password: password,
       );
 
   factory PersonDto.fromDomain(Person object) => PersonDto(
@@ -47,7 +56,9 @@ class PersonDto {
         academicDegree: object.academicDegree,
         workExperience: object.workExperience,
         departmentId: object.departmentId,
-        status: object.status.value,
+        status: object.status?.value,
+        login: object.login,
+        password: object.password,
       );
 
   Map<String, dynamic> toJson() => _$PersonDtoToJson(this);

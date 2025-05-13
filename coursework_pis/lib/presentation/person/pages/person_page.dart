@@ -3,9 +3,11 @@ import 'package:coursework_pis/core/utils/app_strings.dart';
 import 'package:coursework_pis/core/widgets/rounded_elevated_button.dart';
 import 'package:coursework_pis/presentation/person/bloc/person_bloc.dart';
 import 'package:coursework_pis/presentation/person/pages/add_person_page.dart';
-import 'package:coursework_pis/presentation/person/widgets/container_widget.dart';
+import 'package:coursework_pis/presentation/person/widgets/container_person_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../core/bottom_padding/bottom_padding.dart';
 
 class PersonPage extends StatefulWidget {
   const PersonPage({super.key});
@@ -19,7 +21,7 @@ class _PersonPageState extends State<PersonPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppStrings.teacher),
+        title: const Text(AppStrings.teachers),
         centerTitle: false,
       ),
       body: Padding(
@@ -28,27 +30,28 @@ class _PersonPageState extends State<PersonPage> {
           children: [
             BlocBuilder<PersonBloc, PersonState>(builder: (context, state) {
               return state.map(
-                  loading: (_) => Center(
+                  loading: (_) => const Center(
                         child: CircularProgressIndicator(),
                       ),
                   loaded: (value) {
                     return ListView.separated(
-                      padding: EdgeInsets.only(bottom: _getBottomPadding()),
-                      itemBuilder: (BuildContext context, int index) {
-                        return ContainerWidget(
+                      padding:
+                          EdgeInsets.only(bottom: getBottomPadding(context)),
+                      itemBuilder: (context, index) {
+                        return ContainerPersonListWidget(
                           person: value.person[index],
                           index: index,
                         );
                       },
-                      separatorBuilder: (BuildContext context, int index) {
-                        return SizedBox(
+                      separatorBuilder: (context, _) {
+                        return const SizedBox(
                           height: 20.0,
                         );
                       },
                       itemCount: value.person.length,
                     );
                   },
-                  failure: (value) => Text(value.message));
+                  failure: (_) => Container());
             }),
             Align(
               alignment: Alignment.bottomCenter,
@@ -62,7 +65,7 @@ class _PersonPageState extends State<PersonPage> {
                         });
                   },
                   color: AppColors.whiteColor,
-                  widget: Text(AppStrings.add),
+                  widget: const Text(AppStrings.add),
                 ),
               ),
             ),
@@ -70,11 +73,5 @@ class _PersonPageState extends State<PersonPage> {
         ),
       ),
     );
-  }
-
-  double _getBottomPadding() {
-    final safeBottomPadding = MediaQuery.of(context).padding.bottom;
-    final bottomPadding = (safeBottomPadding + 8) * 2 + 50;
-    return bottomPadding;
   }
 }

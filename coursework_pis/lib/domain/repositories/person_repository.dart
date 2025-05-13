@@ -7,10 +7,7 @@ abstract interface class PersonRepository {
 
   Future<Either<Failure, List<Person>>> getPerson();
 
-  Future<Either<Failure, Unit>> addPerson(
-      {required Person person, required String userId});
-
-  Future<Either<Failure, Unit>> addUser({required Person person});
+  Future<Either<Failure, Unit>> addPerson({required Person person});
 
   Future<Either<Failure, Unit>> deletePerson({required String id});
 

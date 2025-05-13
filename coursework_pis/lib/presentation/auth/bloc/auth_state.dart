@@ -7,7 +7,5 @@ class AuthState with _$AuthState {
   const factory AuthState.failure({
     required String message,
   }) = _Failure;
-  const factory AuthState.success({
-    required PersonAuth personAuth,
-  }) = _Success;
+  const factory AuthState.success() = _Success;
 }

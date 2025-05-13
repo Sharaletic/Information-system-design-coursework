@@ -9,11 +9,11 @@ part of 'person_auth_dto.dart';
 PersonAuthDto _$PersonAuthDtoFromJson(Map<String, dynamic> json) =>
     PersonAuthDto(
       id: json['id'] as String,
-      login: json['email'] as String,
+      login: json['login'] as String,
     );
 
 Map<String, dynamic> _$PersonAuthDtoToJson(PersonAuthDto instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'email': instance.login,
+      'login': instance.login,
     };

@@ -5,6 +5,7 @@ class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField(
       {super.key,
       required this.controller,
+      this.labelText,
       required this.hintText,
       this.validator,
       this.suffixIcon,
@@ -18,6 +19,7 @@ class CustomTextFormField extends StatelessWidget {
   final String? Function(String? val)? validator;
   final TextInputType? keyboardType;
   final String hintText;
+  final String? labelText;
   final Widget? suffixIcon;
   final Color? color;
   final bool obscureText;
@@ -35,13 +37,11 @@ class CustomTextFormField extends StatelessWidget {
       readOnly: readOnly,
       maxLines: maxLines,
       onChanged: onChanged,
-      // inputFormatters: <TextInputFormatter>[
-      //   FilteringTextInputFormatter.digitsOnly
-      // ],
       style: TextStyle(
         color: color,
       ),
       decoration: InputDecoration(
+        labelText: labelText,
         suffixIcon: suffixIcon,
         hintText: hintText,
         hintStyle: TextStyle(color: color),

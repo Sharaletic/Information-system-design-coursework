@@ -1,5 +1,10 @@
 class Discipline {
-  Discipline({required this.id, required this.disciplineTitle});
-  final String id;
-  final String disciplineTitle;
+  Discipline({
+    this.id,
+    this.disciplineTitle,
+    this.departmentId,
+  });
+  final String? id;
+  final String? disciplineTitle;
+  final String? departmentId;
 }

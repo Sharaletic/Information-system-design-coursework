@@ -254,7 +254,7 @@ mixin _$AuthState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) failure,
-    required TResult Function(PersonAuth personAuth) success,
+    required TResult Function() success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -262,7 +262,7 @@ mixin _$AuthState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? failure,
-    TResult? Function(PersonAuth personAuth)? success,
+    TResult? Function()? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -270,7 +270,7 @@ mixin _$AuthState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? failure,
-    TResult Function(PersonAuth personAuth)? success,
+    TResult Function()? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -365,7 +365,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) failure,
-    required TResult Function(PersonAuth personAuth) success,
+    required TResult Function() success,
   }) {
     return initial();
   }
@@ -376,7 +376,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? failure,
-    TResult? Function(PersonAuth personAuth)? success,
+    TResult? Function()? success,
   }) {
     return initial?.call();
   }
@@ -387,7 +387,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? failure,
-    TResult Function(PersonAuth personAuth)? success,
+    TResult Function()? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -482,7 +482,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) failure,
-    required TResult Function(PersonAuth personAuth) success,
+    required TResult Function() success,
   }) {
     return loading();
   }
@@ -493,7 +493,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? failure,
-    TResult? Function(PersonAuth personAuth)? success,
+    TResult? Function()? success,
   }) {
     return loading?.call();
   }
@@ -504,7 +504,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? failure,
-    TResult Function(PersonAuth personAuth)? success,
+    TResult Function()? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -626,7 +626,7 @@ class _$FailureImpl implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) failure,
-    required TResult Function(PersonAuth personAuth) success,
+    required TResult Function() success,
   }) {
     return failure(message);
   }
@@ -637,7 +637,7 @@ class _$FailureImpl implements _Failure {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? failure,
-    TResult? Function(PersonAuth personAuth)? success,
+    TResult? Function()? success,
   }) {
     return failure?.call(message);
   }
@@ -648,7 +648,7 @@ class _$FailureImpl implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? failure,
-    TResult Function(PersonAuth personAuth)? success,
+    TResult Function()? success,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -712,8 +712,6 @@ abstract class _$$SuccessImplCopyWith<$Res> {
   factory _$$SuccessImplCopyWith(
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({PersonAuth personAuth});
 }
 
 /// @nodoc
@@ -726,52 +724,26 @@ class __$$SuccessImplCopyWithImpl<$Res>
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? personAuth = null,
-  }) {
-    return _then(_$SuccessImpl(
-      personAuth: null == personAuth
-          ? _value.personAuth
-          : personAuth // ignore: cast_nullable_to_non_nullable
-              as PersonAuth,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl({required this.personAuth});
-
-  @override
-  final PersonAuth personAuth;
+  const _$SuccessImpl();
 
   @override
   String toString() {
-    return 'AuthState.success(personAuth: $personAuth)';
+    return 'AuthState.success()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SuccessImpl &&
-            (identical(other.personAuth, personAuth) ||
-                other.personAuth == personAuth));
+        (other.runtimeType == runtimeType && other is _$SuccessImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, personAuth);
-
-  /// Create a copy of AuthState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
-      __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
@@ -779,9 +751,9 @@ class _$SuccessImpl implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) failure,
-    required TResult Function(PersonAuth personAuth) success,
+    required TResult Function() success,
   }) {
-    return success(personAuth);
+    return success();
   }
 
   @override
@@ -790,9 +762,9 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? failure,
-    TResult? Function(PersonAuth personAuth)? success,
+    TResult? Function()? success,
   }) {
-    return success?.call(personAuth);
+    return success?.call();
   }
 
   @override
@@ -801,11 +773,11 @@ class _$SuccessImpl implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? failure,
-    TResult Function(PersonAuth personAuth)? success,
+    TResult Function()? success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(personAuth);
+      return success();
     }
     return orElse();
   }
@@ -849,14 +821,5 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements AuthState {
-  const factory _Success({required final PersonAuth personAuth}) =
-      _$SuccessImpl;
-
-  PersonAuth get personAuth;
-
-  /// Create a copy of AuthState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _Success() = _$SuccessImpl;
 }

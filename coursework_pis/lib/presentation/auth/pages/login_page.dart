@@ -1,4 +1,3 @@
-import 'package:coursework_pis/core/custom_snack_bar.dart';
 import 'package:coursework_pis/core/routes/routes_name.dart';
 import 'package:coursework_pis/core/theme/app_colors.dart';
 import 'package:coursework_pis/core/utils/app_strings.dart';
@@ -8,6 +7,8 @@ import 'package:coursework_pis/presentation/auth/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../../core/widgets/custom_snackbar.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -57,6 +58,7 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               CustomTextFormField(
                 controller: _loginController,
+                labelText: AppStrings.login,
                 hintText: AppStrings.login,
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -67,11 +69,12 @@ class _LoginPageState extends State<LoginPage> {
                 keyboardType: TextInputType.text,
                 obscureText: false,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               CustomTextFormField(
                 controller: _passwordController,
+                labelText: AppStrings.password,
                 hintText: AppStrings.password,
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -93,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               RoundedElevatedButton(
@@ -107,12 +110,12 @@ class _LoginPageState extends State<LoginPage> {
                 widget:
                     BlocBuilder<AuthBloc, AuthState>(builder: (context, state) {
                   return state.maybeMap(
-                    loading: (_) => Center(
+                    loading: (_) => const Center(
                       child: CircularProgressIndicator(
                         color: AppColors.whiteColor,
                       ),
                     ),
-                    orElse: () => Text(AppStrings.sigIn),
+                    orElse: () => const Text(AppStrings.sigIn),
                   );
                 }),
               )

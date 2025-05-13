@@ -8,12 +8,14 @@ part of 'discipline_dto.dart';
 
 DisciplineDto _$DisciplineDtoFromJson(Map<String, dynamic> json) =>
     DisciplineDto(
-      id: json['id'] as String,
-      disciplineTitle: json['disciplineTitle'] as String,
+      id: json['id'] as String?,
+      disciplineTitle: json['discipline_title'] as String?,
+      departmentId: json['department_id'] as String?,
     );
 
 Map<String, dynamic> _$DisciplineDtoToJson(DisciplineDto instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'disciplineTitle': instance.disciplineTitle,
+      'discipline_title': instance.disciplineTitle,
+      'department_id': instance.departmentId,
     };
