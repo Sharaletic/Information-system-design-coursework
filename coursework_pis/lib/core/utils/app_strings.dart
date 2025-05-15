@@ -2,6 +2,10 @@ class AppStrings {
   static const headOfDepartment = 'Заведующий кафедрой';
   static const teachers = 'Преподаватели';
   static const appointmentOfAcademicLoad = 'Назначение учебной нагрузки';
+  static const editAcademicLoad = 'Редактирование нагрузки';
+  static const addAcademicLoad = 'Добавление нагрузки';
+  static const report = 'Отчет';
+  static const myAcademicLoad = 'Моя учебная нагрузка';
 
   static const fullName = 'ФИО';
   static const post = 'Должность';
@@ -24,6 +28,7 @@ class AppStrings {
   static const save = 'Сохранить';
   static const cancellation = 'Отмена';
   static const appointTeacher = 'Назначить преподавателя';
+  static const generateReport = 'Сформировать отчет';
 
   static const serverExceptionMessage = 'Отсутствует интернет';
   static const required = 'Обязательное поле';

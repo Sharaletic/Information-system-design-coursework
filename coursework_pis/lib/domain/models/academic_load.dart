@@ -3,19 +3,21 @@ import 'package:coursework_pis/domain/models/person.dart';
 
 class AcademicLoad {
   AcademicLoad({
-    required this.id,
+    this.id,
     required this.disciplineId,
     required this.lessonType,
     required this.quantityHours,
     required this.group,
     required this.appointmentYear,
+    required this.semester,
     this.departmentId,
   });
-  final String id;
+  final String? id;
   final String disciplineId;
   final String lessonType;
   final int quantityHours;
   final String group;
-  final DateTime appointmentYear;
+  final int appointmentYear;
+  final int semester;
   final String? departmentId;
 }

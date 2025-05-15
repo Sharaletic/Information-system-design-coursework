@@ -175,7 +175,7 @@ class _EditPersonPageState extends State<EditPersonPage> {
       academicDegree: academicDegreeDropdownValueController.text,
       workExperience: _workExperienceController.text,
       departmentId: widget.person.departmentId,
-      status: widget.person.status,
+      role: widget.person.role,
     );
     return person;
   }

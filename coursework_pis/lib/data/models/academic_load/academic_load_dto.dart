@@ -6,15 +6,16 @@ part 'academic_load_dto.g.dart';
 @JsonSerializable()
 class AcademicLoadDto {
   AcademicLoadDto({
-    required this.id,
+    this.id,
     required this.disciplineId,
     required this.lessonType,
     required this.quantityHours,
     required this.group,
     required this.appointmentYear,
+    required this.semester,
     this.departmentId,
   });
-  final String id;
+  final String? id;
   @JsonKey(name: 'discipline_id')
   final String disciplineId;
   @JsonKey(name: 'lesson_type')
@@ -23,7 +24,8 @@ class AcademicLoadDto {
   final int quantityHours;
   final String group;
   @JsonKey(name: 'appointment_year')
-  final DateTime appointmentYear;
+  final int appointmentYear;
+  final int semester;
   @JsonKey(name: 'department_id')
   String? departmentId;
 
@@ -34,6 +36,7 @@ class AcademicLoadDto {
         quantityHours: quantityHours,
         group: group,
         appointmentYear: appointmentYear,
+        semester: semester,
         departmentId: departmentId,
       );
 
@@ -44,6 +47,7 @@ class AcademicLoadDto {
         quantityHours: object.quantityHours,
         group: object.group,
         appointmentYear: object.appointmentYear,
+        semester: object.semester,
         departmentId: object.departmentId,
       );
 

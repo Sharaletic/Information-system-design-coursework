@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/auxiliary_data/post_items.dart';
 import '../../../core/widgets/custom_snackbar.dart';
-import '../../../core/widgets/drop_down_button.dart';
 
 class AddPersonPage extends StatefulWidget {
   const AddPersonPage({super.key});
@@ -83,13 +82,15 @@ class _AddPersonPageState extends State<AddPersonPage> {
                                 style: TextTheme.of(context).bodyLarge),
                           ))
                       .toList(),
-                  dropDownValue: postDropdownValue!,
+                  dropDownValue: PostItems.postItems.contains(postDropdownValue)
+                      ? postDropdownValue
+                      : null,
                   onChanged: (value) {
                     setState(() {
                       postDropdownValue = value!;
                     });
                   },
-                  hintText: AppStrings.discipline,
+                  hintText: AppStrings.post,
                 ),
                 const SizedBox(
                   height: 10.0,
@@ -102,13 +103,16 @@ class _AddPersonPageState extends State<AddPersonPage> {
                                 style: TextTheme.of(context).bodyLarge),
                           ))
                       .toList(),
-                  dropDownValue: academicDegreeDropdownValue!,
+                  dropDownValue: AcademicDegree.academicDegreeItems
+                          .contains(academicDegreeDropdownValue)
+                      ? academicDegreeDropdownValue
+                      : null,
                   onChanged: (value) {
                     setState(() {
                       academicDegreeDropdownValue = value!;
                     });
                   },
-                  hintText: AppStrings.discipline,
+                  hintText: AppStrings.academicDegree,
                 ),
                 const SizedBox(
                   height: 10.0,
@@ -211,7 +215,7 @@ class _AddPersonPageState extends State<AddPersonPage> {
       workExperience: _workExperienceController.text,
       login: _loginController.text,
       password: _passwordController.text,
-      status: StatusPerson.teacher,
+      role: RolePerson.teacher,
     );
     return person;
   }

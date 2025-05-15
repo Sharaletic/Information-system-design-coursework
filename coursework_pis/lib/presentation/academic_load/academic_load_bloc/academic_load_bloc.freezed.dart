@@ -22,6 +22,10 @@ mixin _$AcademicLoadEvent {
     required TResult Function(AcademicLoad academicLoad) addAcademicLoad,
     required TResult Function(String id) deleteAcademicLoad,
     required TResult Function(AcademicLoad academicLoad) updateAcademicLoad,
+    required TResult Function(Person person, String academicLoadId)
+        addParticipation,
+    required TResult Function(Person person, String academicLoadId)
+        updateParticipation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +34,9 @@ mixin _$AcademicLoadEvent {
     TResult? Function(AcademicLoad academicLoad)? addAcademicLoad,
     TResult? Function(String id)? deleteAcademicLoad,
     TResult? Function(AcademicLoad academicLoad)? updateAcademicLoad,
+    TResult? Function(Person person, String academicLoadId)? addParticipation,
+    TResult? Function(Person person, String academicLoadId)?
+        updateParticipation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +45,8 @@ mixin _$AcademicLoadEvent {
     TResult Function(AcademicLoad academicLoad)? addAcademicLoad,
     TResult Function(String id)? deleteAcademicLoad,
     TResult Function(AcademicLoad academicLoad)? updateAcademicLoad,
+    TResult Function(Person person, String academicLoadId)? addParticipation,
+    TResult Function(Person person, String academicLoadId)? updateParticipation,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +56,8 @@ mixin _$AcademicLoadEvent {
     required TResult Function(_AddAcademicLoad value) addAcademicLoad,
     required TResult Function(_DeleteAcademicLoad value) deleteAcademicLoad,
     required TResult Function(_UpdateAcademicLoad value) updateAcademicLoad,
+    required TResult Function(_AddParticipation value) addParticipation,
+    required TResult Function(_UpdateParticipation value) updateParticipation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +66,8 @@ mixin _$AcademicLoadEvent {
     TResult? Function(_AddAcademicLoad value)? addAcademicLoad,
     TResult? Function(_DeleteAcademicLoad value)? deleteAcademicLoad,
     TResult? Function(_UpdateAcademicLoad value)? updateAcademicLoad,
+    TResult? Function(_AddParticipation value)? addParticipation,
+    TResult? Function(_UpdateParticipation value)? updateParticipation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +76,8 @@ mixin _$AcademicLoadEvent {
     TResult Function(_AddAcademicLoad value)? addAcademicLoad,
     TResult Function(_DeleteAcademicLoad value)? deleteAcademicLoad,
     TResult Function(_UpdateAcademicLoad value)? updateAcademicLoad,
+    TResult Function(_AddParticipation value)? addParticipation,
+    TResult Function(_UpdateParticipation value)? updateParticipation,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -133,6 +148,10 @@ class _$LoadImpl implements _Load {
     required TResult Function(AcademicLoad academicLoad) addAcademicLoad,
     required TResult Function(String id) deleteAcademicLoad,
     required TResult Function(AcademicLoad academicLoad) updateAcademicLoad,
+    required TResult Function(Person person, String academicLoadId)
+        addParticipation,
+    required TResult Function(Person person, String academicLoadId)
+        updateParticipation,
   }) {
     return load();
   }
@@ -144,6 +163,9 @@ class _$LoadImpl implements _Load {
     TResult? Function(AcademicLoad academicLoad)? addAcademicLoad,
     TResult? Function(String id)? deleteAcademicLoad,
     TResult? Function(AcademicLoad academicLoad)? updateAcademicLoad,
+    TResult? Function(Person person, String academicLoadId)? addParticipation,
+    TResult? Function(Person person, String academicLoadId)?
+        updateParticipation,
   }) {
     return load?.call();
   }
@@ -155,6 +177,8 @@ class _$LoadImpl implements _Load {
     TResult Function(AcademicLoad academicLoad)? addAcademicLoad,
     TResult Function(String id)? deleteAcademicLoad,
     TResult Function(AcademicLoad academicLoad)? updateAcademicLoad,
+    TResult Function(Person person, String academicLoadId)? addParticipation,
+    TResult Function(Person person, String academicLoadId)? updateParticipation,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -170,6 +194,8 @@ class _$LoadImpl implements _Load {
     required TResult Function(_AddAcademicLoad value) addAcademicLoad,
     required TResult Function(_DeleteAcademicLoad value) deleteAcademicLoad,
     required TResult Function(_UpdateAcademicLoad value) updateAcademicLoad,
+    required TResult Function(_AddParticipation value) addParticipation,
+    required TResult Function(_UpdateParticipation value) updateParticipation,
   }) {
     return load(this);
   }
@@ -181,6 +207,8 @@ class _$LoadImpl implements _Load {
     TResult? Function(_AddAcademicLoad value)? addAcademicLoad,
     TResult? Function(_DeleteAcademicLoad value)? deleteAcademicLoad,
     TResult? Function(_UpdateAcademicLoad value)? updateAcademicLoad,
+    TResult? Function(_AddParticipation value)? addParticipation,
+    TResult? Function(_UpdateParticipation value)? updateParticipation,
   }) {
     return load?.call(this);
   }
@@ -192,6 +220,8 @@ class _$LoadImpl implements _Load {
     TResult Function(_AddAcademicLoad value)? addAcademicLoad,
     TResult Function(_DeleteAcademicLoad value)? deleteAcademicLoad,
     TResult Function(_UpdateAcademicLoad value)? updateAcademicLoad,
+    TResult Function(_AddParticipation value)? addParticipation,
+    TResult Function(_UpdateParticipation value)? updateParticipation,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -279,6 +309,10 @@ class _$AddAcademicLoadImpl implements _AddAcademicLoad {
     required TResult Function(AcademicLoad academicLoad) addAcademicLoad,
     required TResult Function(String id) deleteAcademicLoad,
     required TResult Function(AcademicLoad academicLoad) updateAcademicLoad,
+    required TResult Function(Person person, String academicLoadId)
+        addParticipation,
+    required TResult Function(Person person, String academicLoadId)
+        updateParticipation,
   }) {
     return addAcademicLoad(academicLoad);
   }
@@ -290,6 +324,9 @@ class _$AddAcademicLoadImpl implements _AddAcademicLoad {
     TResult? Function(AcademicLoad academicLoad)? addAcademicLoad,
     TResult? Function(String id)? deleteAcademicLoad,
     TResult? Function(AcademicLoad academicLoad)? updateAcademicLoad,
+    TResult? Function(Person person, String academicLoadId)? addParticipation,
+    TResult? Function(Person person, String academicLoadId)?
+        updateParticipation,
   }) {
     return addAcademicLoad?.call(academicLoad);
   }
@@ -301,6 +338,8 @@ class _$AddAcademicLoadImpl implements _AddAcademicLoad {
     TResult Function(AcademicLoad academicLoad)? addAcademicLoad,
     TResult Function(String id)? deleteAcademicLoad,
     TResult Function(AcademicLoad academicLoad)? updateAcademicLoad,
+    TResult Function(Person person, String academicLoadId)? addParticipation,
+    TResult Function(Person person, String academicLoadId)? updateParticipation,
     required TResult orElse(),
   }) {
     if (addAcademicLoad != null) {
@@ -316,6 +355,8 @@ class _$AddAcademicLoadImpl implements _AddAcademicLoad {
     required TResult Function(_AddAcademicLoad value) addAcademicLoad,
     required TResult Function(_DeleteAcademicLoad value) deleteAcademicLoad,
     required TResult Function(_UpdateAcademicLoad value) updateAcademicLoad,
+    required TResult Function(_AddParticipation value) addParticipation,
+    required TResult Function(_UpdateParticipation value) updateParticipation,
   }) {
     return addAcademicLoad(this);
   }
@@ -327,6 +368,8 @@ class _$AddAcademicLoadImpl implements _AddAcademicLoad {
     TResult? Function(_AddAcademicLoad value)? addAcademicLoad,
     TResult? Function(_DeleteAcademicLoad value)? deleteAcademicLoad,
     TResult? Function(_UpdateAcademicLoad value)? updateAcademicLoad,
+    TResult? Function(_AddParticipation value)? addParticipation,
+    TResult? Function(_UpdateParticipation value)? updateParticipation,
   }) {
     return addAcademicLoad?.call(this);
   }
@@ -338,6 +381,8 @@ class _$AddAcademicLoadImpl implements _AddAcademicLoad {
     TResult Function(_AddAcademicLoad value)? addAcademicLoad,
     TResult Function(_DeleteAcademicLoad value)? deleteAcademicLoad,
     TResult Function(_UpdateAcademicLoad value)? updateAcademicLoad,
+    TResult Function(_AddParticipation value)? addParticipation,
+    TResult Function(_UpdateParticipation value)? updateParticipation,
     required TResult orElse(),
   }) {
     if (addAcademicLoad != null) {
@@ -433,6 +478,10 @@ class _$DeleteAcademicLoadImpl implements _DeleteAcademicLoad {
     required TResult Function(AcademicLoad academicLoad) addAcademicLoad,
     required TResult Function(String id) deleteAcademicLoad,
     required TResult Function(AcademicLoad academicLoad) updateAcademicLoad,
+    required TResult Function(Person person, String academicLoadId)
+        addParticipation,
+    required TResult Function(Person person, String academicLoadId)
+        updateParticipation,
   }) {
     return deleteAcademicLoad(id);
   }
@@ -444,6 +493,9 @@ class _$DeleteAcademicLoadImpl implements _DeleteAcademicLoad {
     TResult? Function(AcademicLoad academicLoad)? addAcademicLoad,
     TResult? Function(String id)? deleteAcademicLoad,
     TResult? Function(AcademicLoad academicLoad)? updateAcademicLoad,
+    TResult? Function(Person person, String academicLoadId)? addParticipation,
+    TResult? Function(Person person, String academicLoadId)?
+        updateParticipation,
   }) {
     return deleteAcademicLoad?.call(id);
   }
@@ -455,6 +507,8 @@ class _$DeleteAcademicLoadImpl implements _DeleteAcademicLoad {
     TResult Function(AcademicLoad academicLoad)? addAcademicLoad,
     TResult Function(String id)? deleteAcademicLoad,
     TResult Function(AcademicLoad academicLoad)? updateAcademicLoad,
+    TResult Function(Person person, String academicLoadId)? addParticipation,
+    TResult Function(Person person, String academicLoadId)? updateParticipation,
     required TResult orElse(),
   }) {
     if (deleteAcademicLoad != null) {
@@ -470,6 +524,8 @@ class _$DeleteAcademicLoadImpl implements _DeleteAcademicLoad {
     required TResult Function(_AddAcademicLoad value) addAcademicLoad,
     required TResult Function(_DeleteAcademicLoad value) deleteAcademicLoad,
     required TResult Function(_UpdateAcademicLoad value) updateAcademicLoad,
+    required TResult Function(_AddParticipation value) addParticipation,
+    required TResult Function(_UpdateParticipation value) updateParticipation,
   }) {
     return deleteAcademicLoad(this);
   }
@@ -481,6 +537,8 @@ class _$DeleteAcademicLoadImpl implements _DeleteAcademicLoad {
     TResult? Function(_AddAcademicLoad value)? addAcademicLoad,
     TResult? Function(_DeleteAcademicLoad value)? deleteAcademicLoad,
     TResult? Function(_UpdateAcademicLoad value)? updateAcademicLoad,
+    TResult? Function(_AddParticipation value)? addParticipation,
+    TResult? Function(_UpdateParticipation value)? updateParticipation,
   }) {
     return deleteAcademicLoad?.call(this);
   }
@@ -492,6 +550,8 @@ class _$DeleteAcademicLoadImpl implements _DeleteAcademicLoad {
     TResult Function(_AddAcademicLoad value)? addAcademicLoad,
     TResult Function(_DeleteAcademicLoad value)? deleteAcademicLoad,
     TResult Function(_UpdateAcademicLoad value)? updateAcademicLoad,
+    TResult Function(_AddParticipation value)? addParticipation,
+    TResult Function(_UpdateParticipation value)? updateParticipation,
     required TResult orElse(),
   }) {
     if (deleteAcademicLoad != null) {
@@ -588,6 +648,10 @@ class _$UpdateAcademicLoadImpl implements _UpdateAcademicLoad {
     required TResult Function(AcademicLoad academicLoad) addAcademicLoad,
     required TResult Function(String id) deleteAcademicLoad,
     required TResult Function(AcademicLoad academicLoad) updateAcademicLoad,
+    required TResult Function(Person person, String academicLoadId)
+        addParticipation,
+    required TResult Function(Person person, String academicLoadId)
+        updateParticipation,
   }) {
     return updateAcademicLoad(academicLoad);
   }
@@ -599,6 +663,9 @@ class _$UpdateAcademicLoadImpl implements _UpdateAcademicLoad {
     TResult? Function(AcademicLoad academicLoad)? addAcademicLoad,
     TResult? Function(String id)? deleteAcademicLoad,
     TResult? Function(AcademicLoad academicLoad)? updateAcademicLoad,
+    TResult? Function(Person person, String academicLoadId)? addParticipation,
+    TResult? Function(Person person, String academicLoadId)?
+        updateParticipation,
   }) {
     return updateAcademicLoad?.call(academicLoad);
   }
@@ -610,6 +677,8 @@ class _$UpdateAcademicLoadImpl implements _UpdateAcademicLoad {
     TResult Function(AcademicLoad academicLoad)? addAcademicLoad,
     TResult Function(String id)? deleteAcademicLoad,
     TResult Function(AcademicLoad academicLoad)? updateAcademicLoad,
+    TResult Function(Person person, String academicLoadId)? addParticipation,
+    TResult Function(Person person, String academicLoadId)? updateParticipation,
     required TResult orElse(),
   }) {
     if (updateAcademicLoad != null) {
@@ -625,6 +694,8 @@ class _$UpdateAcademicLoadImpl implements _UpdateAcademicLoad {
     required TResult Function(_AddAcademicLoad value) addAcademicLoad,
     required TResult Function(_DeleteAcademicLoad value) deleteAcademicLoad,
     required TResult Function(_UpdateAcademicLoad value) updateAcademicLoad,
+    required TResult Function(_AddParticipation value) addParticipation,
+    required TResult Function(_UpdateParticipation value) updateParticipation,
   }) {
     return updateAcademicLoad(this);
   }
@@ -636,6 +707,8 @@ class _$UpdateAcademicLoadImpl implements _UpdateAcademicLoad {
     TResult? Function(_AddAcademicLoad value)? addAcademicLoad,
     TResult? Function(_DeleteAcademicLoad value)? deleteAcademicLoad,
     TResult? Function(_UpdateAcademicLoad value)? updateAcademicLoad,
+    TResult? Function(_AddParticipation value)? addParticipation,
+    TResult? Function(_UpdateParticipation value)? updateParticipation,
   }) {
     return updateAcademicLoad?.call(this);
   }
@@ -647,6 +720,8 @@ class _$UpdateAcademicLoadImpl implements _UpdateAcademicLoad {
     TResult Function(_AddAcademicLoad value)? addAcademicLoad,
     TResult Function(_DeleteAcademicLoad value)? deleteAcademicLoad,
     TResult Function(_UpdateAcademicLoad value)? updateAcademicLoad,
+    TResult Function(_AddParticipation value)? addParticipation,
+    TResult Function(_UpdateParticipation value)? updateParticipation,
     required TResult orElse(),
   }) {
     if (updateAcademicLoad != null) {
@@ -666,6 +741,368 @@ abstract class _UpdateAcademicLoad implements AcademicLoadEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UpdateAcademicLoadImplCopyWith<_$UpdateAcademicLoadImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AddParticipationImplCopyWith<$Res> {
+  factory _$$AddParticipationImplCopyWith(_$AddParticipationImpl value,
+          $Res Function(_$AddParticipationImpl) then) =
+      __$$AddParticipationImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Person person, String academicLoadId});
+}
+
+/// @nodoc
+class __$$AddParticipationImplCopyWithImpl<$Res>
+    extends _$AcademicLoadEventCopyWithImpl<$Res, _$AddParticipationImpl>
+    implements _$$AddParticipationImplCopyWith<$Res> {
+  __$$AddParticipationImplCopyWithImpl(_$AddParticipationImpl _value,
+      $Res Function(_$AddParticipationImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AcademicLoadEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? person = null,
+    Object? academicLoadId = null,
+  }) {
+    return _then(_$AddParticipationImpl(
+      person: null == person
+          ? _value.person
+          : person // ignore: cast_nullable_to_non_nullable
+              as Person,
+      academicLoadId: null == academicLoadId
+          ? _value.academicLoadId
+          : academicLoadId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AddParticipationImpl implements _AddParticipation {
+  const _$AddParticipationImpl(
+      {required this.person, required this.academicLoadId});
+
+  @override
+  final Person person;
+  @override
+  final String academicLoadId;
+
+  @override
+  String toString() {
+    return 'AcademicLoadEvent.addParticipation(person: $person, academicLoadId: $academicLoadId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddParticipationImpl &&
+            (identical(other.person, person) || other.person == person) &&
+            (identical(other.academicLoadId, academicLoadId) ||
+                other.academicLoadId == academicLoadId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, person, academicLoadId);
+
+  /// Create a copy of AcademicLoadEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddParticipationImplCopyWith<_$AddParticipationImpl> get copyWith =>
+      __$$AddParticipationImplCopyWithImpl<_$AddParticipationImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function(AcademicLoad academicLoad) addAcademicLoad,
+    required TResult Function(String id) deleteAcademicLoad,
+    required TResult Function(AcademicLoad academicLoad) updateAcademicLoad,
+    required TResult Function(Person person, String academicLoadId)
+        addParticipation,
+    required TResult Function(Person person, String academicLoadId)
+        updateParticipation,
+  }) {
+    return addParticipation(person, academicLoadId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function(AcademicLoad academicLoad)? addAcademicLoad,
+    TResult? Function(String id)? deleteAcademicLoad,
+    TResult? Function(AcademicLoad academicLoad)? updateAcademicLoad,
+    TResult? Function(Person person, String academicLoadId)? addParticipation,
+    TResult? Function(Person person, String academicLoadId)?
+        updateParticipation,
+  }) {
+    return addParticipation?.call(person, academicLoadId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(AcademicLoad academicLoad)? addAcademicLoad,
+    TResult Function(String id)? deleteAcademicLoad,
+    TResult Function(AcademicLoad academicLoad)? updateAcademicLoad,
+    TResult Function(Person person, String academicLoadId)? addParticipation,
+    TResult Function(Person person, String academicLoadId)? updateParticipation,
+    required TResult orElse(),
+  }) {
+    if (addParticipation != null) {
+      return addParticipation(person, academicLoadId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Load value) load,
+    required TResult Function(_AddAcademicLoad value) addAcademicLoad,
+    required TResult Function(_DeleteAcademicLoad value) deleteAcademicLoad,
+    required TResult Function(_UpdateAcademicLoad value) updateAcademicLoad,
+    required TResult Function(_AddParticipation value) addParticipation,
+    required TResult Function(_UpdateParticipation value) updateParticipation,
+  }) {
+    return addParticipation(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Load value)? load,
+    TResult? Function(_AddAcademicLoad value)? addAcademicLoad,
+    TResult? Function(_DeleteAcademicLoad value)? deleteAcademicLoad,
+    TResult? Function(_UpdateAcademicLoad value)? updateAcademicLoad,
+    TResult? Function(_AddParticipation value)? addParticipation,
+    TResult? Function(_UpdateParticipation value)? updateParticipation,
+  }) {
+    return addParticipation?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Load value)? load,
+    TResult Function(_AddAcademicLoad value)? addAcademicLoad,
+    TResult Function(_DeleteAcademicLoad value)? deleteAcademicLoad,
+    TResult Function(_UpdateAcademicLoad value)? updateAcademicLoad,
+    TResult Function(_AddParticipation value)? addParticipation,
+    TResult Function(_UpdateParticipation value)? updateParticipation,
+    required TResult orElse(),
+  }) {
+    if (addParticipation != null) {
+      return addParticipation(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddParticipation implements AcademicLoadEvent {
+  const factory _AddParticipation(
+      {required final Person person,
+      required final String academicLoadId}) = _$AddParticipationImpl;
+
+  Person get person;
+  String get academicLoadId;
+
+  /// Create a copy of AcademicLoadEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AddParticipationImplCopyWith<_$AddParticipationImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateParticipationImplCopyWith<$Res> {
+  factory _$$UpdateParticipationImplCopyWith(_$UpdateParticipationImpl value,
+          $Res Function(_$UpdateParticipationImpl) then) =
+      __$$UpdateParticipationImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Person person, String academicLoadId});
+}
+
+/// @nodoc
+class __$$UpdateParticipationImplCopyWithImpl<$Res>
+    extends _$AcademicLoadEventCopyWithImpl<$Res, _$UpdateParticipationImpl>
+    implements _$$UpdateParticipationImplCopyWith<$Res> {
+  __$$UpdateParticipationImplCopyWithImpl(_$UpdateParticipationImpl _value,
+      $Res Function(_$UpdateParticipationImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AcademicLoadEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? person = null,
+    Object? academicLoadId = null,
+  }) {
+    return _then(_$UpdateParticipationImpl(
+      person: null == person
+          ? _value.person
+          : person // ignore: cast_nullable_to_non_nullable
+              as Person,
+      academicLoadId: null == academicLoadId
+          ? _value.academicLoadId
+          : academicLoadId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateParticipationImpl implements _UpdateParticipation {
+  const _$UpdateParticipationImpl(
+      {required this.person, required this.academicLoadId});
+
+  @override
+  final Person person;
+  @override
+  final String academicLoadId;
+
+  @override
+  String toString() {
+    return 'AcademicLoadEvent.updateParticipation(person: $person, academicLoadId: $academicLoadId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateParticipationImpl &&
+            (identical(other.person, person) || other.person == person) &&
+            (identical(other.academicLoadId, academicLoadId) ||
+                other.academicLoadId == academicLoadId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, person, academicLoadId);
+
+  /// Create a copy of AcademicLoadEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateParticipationImplCopyWith<_$UpdateParticipationImpl> get copyWith =>
+      __$$UpdateParticipationImplCopyWithImpl<_$UpdateParticipationImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function(AcademicLoad academicLoad) addAcademicLoad,
+    required TResult Function(String id) deleteAcademicLoad,
+    required TResult Function(AcademicLoad academicLoad) updateAcademicLoad,
+    required TResult Function(Person person, String academicLoadId)
+        addParticipation,
+    required TResult Function(Person person, String academicLoadId)
+        updateParticipation,
+  }) {
+    return updateParticipation(person, academicLoadId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function(AcademicLoad academicLoad)? addAcademicLoad,
+    TResult? Function(String id)? deleteAcademicLoad,
+    TResult? Function(AcademicLoad academicLoad)? updateAcademicLoad,
+    TResult? Function(Person person, String academicLoadId)? addParticipation,
+    TResult? Function(Person person, String academicLoadId)?
+        updateParticipation,
+  }) {
+    return updateParticipation?.call(person, academicLoadId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(AcademicLoad academicLoad)? addAcademicLoad,
+    TResult Function(String id)? deleteAcademicLoad,
+    TResult Function(AcademicLoad academicLoad)? updateAcademicLoad,
+    TResult Function(Person person, String academicLoadId)? addParticipation,
+    TResult Function(Person person, String academicLoadId)? updateParticipation,
+    required TResult orElse(),
+  }) {
+    if (updateParticipation != null) {
+      return updateParticipation(person, academicLoadId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Load value) load,
+    required TResult Function(_AddAcademicLoad value) addAcademicLoad,
+    required TResult Function(_DeleteAcademicLoad value) deleteAcademicLoad,
+    required TResult Function(_UpdateAcademicLoad value) updateAcademicLoad,
+    required TResult Function(_AddParticipation value) addParticipation,
+    required TResult Function(_UpdateParticipation value) updateParticipation,
+  }) {
+    return updateParticipation(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Load value)? load,
+    TResult? Function(_AddAcademicLoad value)? addAcademicLoad,
+    TResult? Function(_DeleteAcademicLoad value)? deleteAcademicLoad,
+    TResult? Function(_UpdateAcademicLoad value)? updateAcademicLoad,
+    TResult? Function(_AddParticipation value)? addParticipation,
+    TResult? Function(_UpdateParticipation value)? updateParticipation,
+  }) {
+    return updateParticipation?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Load value)? load,
+    TResult Function(_AddAcademicLoad value)? addAcademicLoad,
+    TResult Function(_DeleteAcademicLoad value)? deleteAcademicLoad,
+    TResult Function(_UpdateAcademicLoad value)? updateAcademicLoad,
+    TResult Function(_AddParticipation value)? addParticipation,
+    TResult Function(_UpdateParticipation value)? updateParticipation,
+    required TResult orElse(),
+  }) {
+    if (updateParticipation != null) {
+      return updateParticipation(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateParticipation implements AcademicLoadEvent {
+  const factory _UpdateParticipation(
+      {required final Person person,
+      required final String academicLoadId}) = _$UpdateParticipationImpl;
+
+  Person get person;
+  String get academicLoadId;
+
+  /// Create a copy of AcademicLoadEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UpdateParticipationImplCopyWith<_$UpdateParticipationImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

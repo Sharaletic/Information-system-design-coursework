@@ -5,4 +5,7 @@ class RoutesNames {
   static const report = 'report';
   static const profile = 'profile';
   static const editAcademicLoad = 'editAcademicLoad';
+  static const addAcademicLoad = 'addAcademicLoad';
+  static const teacherAppointment = 'teacherAppointment';
+  static const teacherAcademicLoad = 'teacherAcademicLoad';
 }

@@ -1,13 +1,16 @@
 import 'package:coursework_pis/presentation/academic_load/widgets/container_academic_load_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/bottom_padding/bottom_padding.dart';
+import '../../../core/routes/routes_name.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/utils/app_strings.dart';
 import '../../../core/widgets/rounded_elevated_button.dart';
 import '../../person/pages/add_person_page.dart';
 import '../academic_load_bloc/academic_load_bloc.dart';
+import '../discipline_bloc/discipline_bloc.dart';
 
 class AcademicLoadPage extends StatefulWidget {
   const AcademicLoadPage({super.key});
@@ -42,6 +45,7 @@ class _AcademicLoadPageState extends State<AcademicLoadPage> {
                       itemBuilder: (context, index) {
                         return ContainerAcademicLoadListWidget(
                           academicLoad: value.academicLoads[index],
+                          isReport: false,
                         );
                       },
                       separatorBuilder: (context, _) {
@@ -59,12 +63,12 @@ class _AcademicLoadPageState extends State<AcademicLoadPage> {
               child: SafeArea(
                 child: RoundedElevatedButton(
                   onPressed: () {
-                    showModalBottomSheet<void>(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return const AddPersonPage();
-                      },
+                    context.goNamed(
+                      RoutesNames.addAcademicLoad,
                     );
+                    context.read<DisciplineBloc>().add(
+                          DisciplineEvent.load(),
+                        );
                   },
                   color: AppColors.whiteColor,
                   widget: const Text(AppStrings.add),

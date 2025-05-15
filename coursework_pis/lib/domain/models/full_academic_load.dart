@@ -1,8 +1,9 @@
 import 'package:coursework_pis/domain/models/discipline.dart';
 import 'package:coursework_pis/domain/models/person.dart';
+import 'package:equatable/equatable.dart';
 
-class FullAcademicLoad {
-  FullAcademicLoad({
+class FullAcademicLoad extends Equatable {
+  const FullAcademicLoad({
     required this.id,
     required this.person,
     required this.discipline,
@@ -10,6 +11,7 @@ class FullAcademicLoad {
     required this.quantityHours,
     required this.group,
     required this.appointmentYear,
+    required this.semester,
     this.departmentId,
   });
   final String id;
@@ -18,6 +20,20 @@ class FullAcademicLoad {
   final String lessonType;
   final int quantityHours;
   final String group;
-  final DateTime appointmentYear;
+  final int appointmentYear;
+  final int semester;
   final String? departmentId;
+
+  @override
+  List<Object?> get props => [
+        id,
+        person,
+        discipline,
+        lessonType,
+        quantityHours,
+        group,
+        appointmentYear,
+        semester,
+        departmentId,
+      ];
 }

@@ -12,4 +12,12 @@ class AcademicLoadEvent with _$AcademicLoadEvent {
   const factory AcademicLoadEvent.updateAcademicLoad({
     required AcademicLoad academicLoad,
   }) = _UpdateAcademicLoad;
+  const factory AcademicLoadEvent.addParticipation({
+    required Person person,
+    required String academicLoadId,
+  }) = _AddParticipation;
+  const factory AcademicLoadEvent.updateParticipation({
+    required Person person,
+    required String academicLoadId,
+  }) = _UpdateParticipation;
 }

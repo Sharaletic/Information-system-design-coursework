@@ -1,12 +1,14 @@
-class Person {
-  Person({
+import 'package:equatable/equatable.dart';
+
+class Person extends Equatable {
+  const Person({
     this.id,
     required this.fullName,
     required this.post,
     this.academicDegree,
     this.workExperience,
     this.departmentId,
-    this.status,
+    this.role,
     this.login,
     this.password,
   });
@@ -16,15 +18,28 @@ class Person {
   final String? academicDegree;
   final String? workExperience;
   final String? departmentId;
-  final StatusPerson? status;
+  final RolePerson? role;
   final String? login;
   final String? password;
+
+  @override
+  List<Object?> get props => [
+        id,
+        fullName,
+        post,
+        academicDegree,
+        workExperience,
+        departmentId,
+        role,
+        login,
+        password,
+      ];
 }
 
-enum StatusPerson {
+enum RolePerson {
   teacher('Преподаватель'),
   headOfDepartment('Заведующий кафедрой');
 
-  const StatusPerson(this.value);
+  const RolePerson(this.value);
   final String value;
 }

@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/widgets/custom_snackbar.dart';
+import '../../../domain/models/person.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -42,9 +43,14 @@ class _LoginPageState extends State<LoginPage> {
         child: BlocListener<AuthBloc, AuthState>(
           listener: (context, state) {
             state.map(
-              success: (_) {
+              success: (value) {
                 clear();
-                context.goNamed(RoutesNames.teacher);
+                if (value.person.role == RolePerson.headOfDepartment) {
+                  context.goNamed(RoutesNames.teacher);
+                }
+                if (value.person.role == RolePerson.teacher) {
+                  context.goNamed(RoutesNames.teacherAcademicLoad);
+                }
               },
               initial: (_) {},
               failure: (state) {
@@ -55,6 +61,7 @@ class _LoginPageState extends State<LoginPage> {
           },
           child: Form(
               child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CustomTextFormField(
                 controller: _loginController,

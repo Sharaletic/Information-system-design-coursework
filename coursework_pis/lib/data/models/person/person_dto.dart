@@ -11,7 +11,7 @@ class PersonDto {
     this.academicDegree,
     this.workExperience,
     this.departmentId,
-    this.status,
+    this.role,
     this.login,
     this.password,
   });
@@ -25,13 +25,13 @@ class PersonDto {
   final String? workExperience;
   @JsonKey(name: 'department_id')
   String? departmentId;
-  String? status;
+  String? role;
   final String? login;
   final String? password;
 
-  StatusPerson? getStatus(String? status) {
+  RolePerson? getStatus(String? status) {
     return status != null
-        ? StatusPerson.values.firstWhere(
+        ? RolePerson.values.firstWhere(
             (item) => item.value == status,
           )
         : null;
@@ -44,7 +44,7 @@ class PersonDto {
         academicDegree: academicDegree,
         workExperience: workExperience,
         departmentId: departmentId,
-        status: getStatus(status),
+        role: getStatus(role),
         login: login,
         password: password,
       );
@@ -56,7 +56,7 @@ class PersonDto {
         academicDegree: object.academicDegree,
         workExperience: object.workExperience,
         departmentId: object.departmentId,
-        status: object.status?.value,
+        role: object.role?.value,
         login: object.login,
         password: object.password,
       );

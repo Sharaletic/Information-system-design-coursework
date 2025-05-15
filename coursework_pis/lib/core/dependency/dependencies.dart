@@ -3,17 +3,25 @@ import 'package:coursework_pis/data/datasource/auth_remote_data_source.dart';
 import 'package:coursework_pis/data/repositories/academic_load_repository_impl.dart';
 import 'package:coursework_pis/data/repositories/auth_repository_impl.dart';
 import 'package:coursework_pis/data/repositories/discipline_repository_impl.dart';
+import 'package:coursework_pis/data/repositories/participation_repository_impl.dart';
 import 'package:coursework_pis/data/repositories/person_repository_impl.dart';
+import 'package:coursework_pis/data/repositories/report_repository_impl.dart';
+import 'package:coursework_pis/data/repositories/teacher_academic_load_repository_impl.dart';
 import 'package:coursework_pis/data/services/user_service.dart';
 import 'package:coursework_pis/domain/models/person.dart';
 import 'package:coursework_pis/domain/repositories/academic_load_repository.dart';
 import 'package:coursework_pis/domain/repositories/auth_repository.dart';
 import 'package:coursework_pis/domain/repositories/discipline_repository.dart';
+import 'package:coursework_pis/domain/repositories/participation_repository.dart';
 import 'package:coursework_pis/domain/repositories/person_repository.dart';
+import 'package:coursework_pis/domain/repositories/report_repository.dart';
+import 'package:coursework_pis/domain/repositories/teacher_academic_load_repository.dart';
 import 'package:coursework_pis/domain/usecases/getPerson.dart';
 import 'package:coursework_pis/presentation/academic_load/discipline_bloc/discipline_bloc.dart';
 import 'package:coursework_pis/presentation/auth/bloc/auth_bloc.dart';
 import 'package:coursework_pis/presentation/person/bloc/person_bloc.dart';
+import 'package:coursework_pis/presentation/report/bloc/report_bloc.dart';
+import 'package:coursework_pis/presentation/teacher_academic_load/bloc/teacher_academic_load_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -37,6 +45,10 @@ Future<void> setup() async {
   _initAcademicLoad();
 
   _initDiscipline();
+
+  _initReport();
+
+  _initTeacherAcademicLoad();
 }
 
 void _initAuth() {
@@ -78,8 +90,13 @@ void _initAcademicLoad() {
           supabaseClient: getIt<SupabaseClient>(),
           userService: getIt<UserService>()));
 
-  getIt.registerLazySingleton<AcademicLoadBloc>(
-      () => AcademicLoadBloc(repository: getIt<AcademicLoadRepository>()));
+  getIt.registerLazySingleton<ParticipationRepository>(
+    () => ParticipationRepositoryImpl(supabaseClient: getIt<SupabaseClient>()),
+  );
+
+  getIt.registerLazySingleton<AcademicLoadBloc>(() => AcademicLoadBloc(
+      academicLoadRepository: getIt<AcademicLoadRepository>(),
+      participationRepository: getIt<ParticipationRepository>()));
 }
 
 void _initDiscipline() {
@@ -90,4 +107,24 @@ void _initDiscipline() {
 
   getIt.registerLazySingleton<DisciplineBloc>(
       () => DisciplineBloc(repository: getIt<DisciplineRepository>()));
+}
+
+void _initReport() {
+  getIt.registerLazySingleton<ReportRepository>(() => ReportRepositoryImpl(
+      supabaseClient: getIt<SupabaseClient>(),
+      userService: getIt<UserService>()));
+
+  getIt.registerLazySingleton<ReportBloc>(
+      () => ReportBloc(reportRepository: getIt<ReportRepository>()));
+}
+
+void _initTeacherAcademicLoad() {
+  getIt.registerLazySingleton<TeacherAcademicLoadRepository>(() =>
+      TeacherAcademicLoadRepositoryImpl(
+          supabaseClient: getIt<SupabaseClient>(),
+          sharedPreferences: getIt<SharedPreferences>()));
+
+  getIt.registerLazySingleton<TeacherAcademicLoadBloc>(() =>
+      TeacherAcademicLoadBloc(
+          reportRepository: getIt<TeacherAcademicLoadRepository>()));
 }

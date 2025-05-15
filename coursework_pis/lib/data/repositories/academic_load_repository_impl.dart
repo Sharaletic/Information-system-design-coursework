@@ -9,6 +9,7 @@ import 'package:coursework_pis/data/services/user_service.dart';
 
 import '../../core/utils/table_names.dart';
 import '../../domain/models/academic_load.dart';
+import '../../domain/models/person.dart';
 import '../models/full_academic_load/full_academic_load_dto.dart';
 
 class AcademicLoadRepositoryImpl implements AcademicLoadRepository {
@@ -55,6 +56,7 @@ class AcademicLoadRepositoryImpl implements AcademicLoadRepository {
         final dto = AcademicLoadDto.fromDomain(academicLoad);
         dto.departmentId = departmentId;
         final json = dto.toJson();
+        json.remove('id');
         await _supabaseClient.from(TableNames.academicLoadTable).insert(json);
         return right(unit);
       });
@@ -94,7 +96,7 @@ class AcademicLoadRepositoryImpl implements AcademicLoadRepository {
         await _supabaseClient
             .from(TableNames.academicLoadTable)
             .update(json)
-            .eq('id', dto.id);
+            .eq('id', dto.id!);
         return right(unit);
       });
     } catch (e) {

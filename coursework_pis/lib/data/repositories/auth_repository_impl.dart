@@ -1,6 +1,7 @@
 import 'package:coursework_pis/core/error/failure.dart';
 import 'package:coursework_pis/core/error/server_exception.dart';
 import 'package:coursework_pis/data/datasource/auth_remote_data_source.dart';
+import 'package:coursework_pis/domain/models/person_auth.dart';
 import 'package:coursework_pis/domain/repositories/auth_repository.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:fpdart/src/either.dart';
@@ -13,11 +14,12 @@ class AuthRepositoryImpl implements AuthRepository {
   final SupabaseClient supabaseClient;
 
   @override
-  Future<Either<Failure, Unit>> login(
+  Future<Either<Failure, PersonAuth>> login(
       {required String login, required String password}) async {
     try {
-      await remoteDataSource.login(login: login, password: password);
-      return right(unit);
+      final response =
+          await remoteDataSource.login(login: login, password: password);
+      return right(response);
     } on ServerException catch (e) {
       return left(Failure(message: e.message));
     }

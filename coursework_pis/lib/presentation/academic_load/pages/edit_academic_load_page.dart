@@ -10,12 +10,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import '../../../core/auxiliary_data/semesters.dart';
 import '../../../core/routes/routes_name.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/utils/app_strings.dart';
 import '../../../core/widgets/custom_text_form_field.dart';
+import '../../../core/widgets/date_picker.dart';
 import '../../../core/widgets/drop_down_button.dart';
 import '../../../core/widgets/rounded_elevated_button.dart';
+import '../../../domain/models/person.dart';
+import '../../person/bloc/person_bloc.dart';
+import '../widgets/drop_down_button_discipline.dart';
+import '../widgets/drop_down_button_person.dart';
 
 class EditAcademicLoadPage extends StatefulWidget {
   const EditAcademicLoadPage({
@@ -34,12 +40,15 @@ class _EditAcademicLoadPageState extends State<EditAcademicLoadPage> {
   late TextEditingController lessonTypeController;
   late TextEditingController _quantityHoursController;
   late TextEditingController _groupController;
-  late TextEditingController appointmentDateController;
-  DateTime _dateTime = DateTime.now();
-  late Discipline _selectedDiscipline;
+  // late TextEditingController appointmentDateController;
+  late TextEditingController teacherController;
+  late TextEditingController _semesterController;
 
-  List<Discipline> disciplines = [];
-  DateTime selectedDay = DateTime.now();
+  // DateTime _dateTime = DateTime.now();
+  late Discipline _selectedDiscipline;
+  late Person? _selectedPerson;
+
+  // DateTime selectedDay = DateTime.now();
 
   @override
   void initState() {
@@ -50,10 +59,15 @@ class _EditAcademicLoadPageState extends State<EditAcademicLoadPage> {
     _quantityHoursController = TextEditingController(
         text: widget.academicLoad.quantityHours.toString());
     _groupController = TextEditingController(text: widget.academicLoad.group);
-    appointmentDateController = TextEditingController(
-      text: DateFormat.yMd('RU-ru').format(widget.academicLoad.appointmentYear),
-    );
+    // appointmentDateController = TextEditingController(
+    //   text: DateFormat.yMd('RU-ru').format(widget.academicLoad.appointmentYear),
+    // );
+    teacherController =
+        TextEditingController(text: widget.academicLoad.person?.fullName);
+    _semesterController =
+        TextEditingController(text: widget.academicLoad.semester.toString());
     _selectedDiscipline = widget.academicLoad.discipline;
+    _selectedPerson = widget.academicLoad.person;
     super.initState();
   }
 
@@ -63,7 +77,7 @@ class _EditAcademicLoadPageState extends State<EditAcademicLoadPage> {
     lessonTypeController.dispose();
     _quantityHoursController.dispose();
     _groupController.dispose();
-    appointmentDateController.dispose();
+    // appointmentDateController.dispose();
     super.dispose();
   }
 
@@ -71,7 +85,7 @@ class _EditAcademicLoadPageState extends State<EditAcademicLoadPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Редактирование нагрузки'),
+        title: const Text(AppStrings.editAcademicLoad),
         leading: BackButton(
           onPressed: () {
             context.replaceNamed(RoutesNames.academicLoad);
@@ -89,37 +103,16 @@ class _EditAcademicLoadPageState extends State<EditAcademicLoadPage> {
               const SizedBox(
                 height: 5,
               ),
-              BlocBuilder<DisciplineBloc, DisciplineState>(
-                builder: (context, state) {
-                  return state.maybeMap(
-                      loading: (_) =>
-                          Center(child: CircularProgressIndicator()),
-                      loaded: (state) {
-                        return DropDownButton<Discipline>(
-                          items: state.disciplines
-                              .map((value) => DropdownMenuItem<Discipline>(
-                                    value: value,
-                                    child: Text(value.disciplineTitle!,
-                                        style: TextTheme.of(context).bodyLarge),
-                                  ))
-                              .toList(),
-                          dropDownValue:
-                              state.disciplines.contains(_selectedDiscipline)
-                                  ? _selectedDiscipline
-                                  : null,
-                          onChanged: (value) {
-                            setState(() {
-                              _selectedDiscipline = value!;
-                            });
-                            if (value != null) {
-                              disciplineController.text =
-                                  value.disciplineTitle!;
-                            }
-                          },
-                          hintText: AppStrings.discipline,
-                        );
-                      },
-                      orElse: () => Container());
+              DropDownButtonDiscipline(
+                disciplineController: disciplineController,
+                selectedDiscipline: _selectedDiscipline,
+                onChanged: (value) {
+                  setState(() {
+                    _selectedDiscipline = value!;
+                  });
+                  if (value != null) {
+                    disciplineController.text = value.disciplineTitle!;
+                  }
                 },
               ),
               const SizedBox(
@@ -182,40 +175,63 @@ class _EditAcademicLoadPageState extends State<EditAcademicLoadPage> {
               const SizedBox(
                 height: 10.0,
               ),
-              const Text(AppStrings.appointmentYear),
+              // DatePicker(
+              //   hintText: AppStrings.appointmentYear,
+              //   currentDate: DateFormat('dd.MM.yyyy').parse(appointmentDateController.text),
+              //   dateController: appointmentDateController,
+              //   changeDat: (value) {
+              //     setState(() {
+              //       _dateTime = value;
+              //       appointmentDateController.text =
+              //           DateFormat.yMd('RU-ru').format(_dateTime);
+              //     });
+              //   },
+              // ),
+              const Text(AppStrings.semester),
+              const SizedBox(
+                height: 5.0,
+              ),
+              DropDownButton<String>(
+                items: Semesters.semesters
+                    .map((value) => DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value,
+                              style: TextTheme.of(context).bodyLarge),
+                        ))
+                    .toList(),
+                dropDownValue: _semesterController.text,
+                onChanged: (value) {
+                  setState(() {
+                    _semesterController.text = value!;
+                  });
+                },
+                hintText: AppStrings.semester,
+              ),
+              const Text(AppStrings.teacher),
               const SizedBox(
                 height: 5,
               ),
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  CustomTextFormField(
-                    readOnly: true,
-                    controller: appointmentDateController,
-                    hintText: AppStrings.appointmentYear,
-                    // validator: _validateAge,
-                  ),
-                  Positioned.fill(
-                    child: MyDatePicker(
-                      currentDate: DateFormat('dd.MM.yyyy')
-                          .parse(appointmentDateController.text),
-                      changeDate: (value) {
-                        setState(() {
-                          _dateTime = value;
-                          appointmentDateController.text =
-                              DateFormat.yMd('RU-ru').format(_dateTime);
-                        });
-                      },
-                    ),
-                  ),
-                ],
+              if (teacherController.text.isNotEmpty)
+                DropDownButtonPerson(
+                    teacherController: teacherController,
+                    selectedPerson: _selectedPerson!,
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedPerson = value!;
+                      });
+                      if (value != null) {
+                        teacherController.text = value.fullName;
+                      }
+                    }),
+              const SizedBox(
+                height: 30.0,
               ),
               Row(
                 children: [
                   Expanded(
                     child: RoundedElevatedButton(
                       onPressed: () {
-                        Navigator.of(context).pop();
+                        context.replaceNamed(RoutesNames.academicLoad);
                       },
                       color: AppColors.primaryColor,
                       widget: const Text(AppStrings.cancellation),
@@ -231,6 +247,13 @@ class _EditAcademicLoadPageState extends State<EditAcademicLoadPage> {
                           context.read<AcademicLoadBloc>().add(
                               AcademicLoadEvent.updateAcademicLoad(
                                   academicLoad: createAcademicLoad()));
+                          if (_selectedPerson != null) {
+                            context.read<AcademicLoadBloc>().add(
+                                AcademicLoadEvent.updateParticipation(
+                                    person: _selectedPerson!,
+                                    academicLoadId: widget.academicLoad.id));
+                          }
+                          context.replaceNamed(RoutesNames.academicLoad);
                         }
                       },
                       color: AppColors.primaryColor,
@@ -247,10 +270,12 @@ class _EditAcademicLoadPageState extends State<EditAcademicLoadPage> {
   }
 
   AcademicLoad createAcademicLoad() => AcademicLoad(
-      id: widget.academicLoad.id,
-      disciplineId: _selectedDiscipline.id!,
-      lessonType: lessonTypeController.text,
-      quantityHours: int.parse(_quantityHoursController.text),
-      group: _groupController.text,
-      appointmentYear: _dateTime);
+        id: widget.academicLoad.id,
+        disciplineId: _selectedDiscipline.id!,
+        lessonType: lessonTypeController.text,
+        quantityHours: int.parse(_quantityHoursController.text),
+        group: _groupController.text,
+        appointmentYear: DateTime.now().year,
+        semester: int.parse(_semesterController.text),
+      );
 }

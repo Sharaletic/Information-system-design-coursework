@@ -5,6 +5,8 @@ import 'package:coursework_pis/presentation/academic_load/academic_load_bloc/aca
 import 'package:coursework_pis/presentation/academic_load/discipline_bloc/discipline_bloc.dart';
 import 'package:coursework_pis/presentation/auth/bloc/auth_bloc.dart';
 import 'package:coursework_pis/presentation/person/bloc/person_bloc.dart';
+import 'package:coursework_pis/presentation/report/bloc/report_bloc.dart';
+import 'package:coursework_pis/presentation/teacher_academic_load/bloc/teacher_academic_load_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -21,6 +23,10 @@ void main() async {
             getIt<AcademicLoadBloc>()..add(AcademicLoadEvent.load())),
     BlocProvider(
         create: (_) => getIt<DisciplineBloc>()..add(DisciplineEvent.load())),
+    BlocProvider(create: (_) => getIt<ReportBloc>()),
+    BlocProvider(
+        create: (_) => getIt<TeacherAcademicLoadBloc>()
+          ..add(TeacherAcademicLoadEvent.load())),
   ], child: MyApp()));
 }
 

@@ -15,8 +15,10 @@ class ContainerAcademicLoadListWidget extends StatelessWidget {
   const ContainerAcademicLoadListWidget({
     super.key,
     required this.academicLoad,
+    required this.isReport,
   });
   final FullAcademicLoad academicLoad;
+  final bool isReport;
 
   @override
   Widget build(BuildContext context) {
@@ -57,8 +59,10 @@ class ContainerAcademicLoadListWidget extends StatelessWidget {
               title: AppStrings.group, definition: academicLoad.group),
           RichTextWidget(
               title: AppStrings.appointmentYear,
-              definition:
-                  DateFormat.yMd('RU-ru').format(academicLoad.appointmentYear)),
+              definition: academicLoad.appointmentYear.toString()),
+          RichTextWidget(
+              title: AppStrings.semester,
+              definition: academicLoad.semester.toString()),
           if (academicLoad.person != null)
             RichTextWidget(
                 title: AppStrings.teacher,
@@ -66,48 +70,52 @@ class ContainerAcademicLoadListWidget extends StatelessWidget {
           const SizedBox(
             height: 10.0,
           ),
-          Row(
-            children: [
-              Expanded(
-                child: RoundedElevatedButton(
-                  onPressed: () {
-                    context.goNamed(RoutesNames.editAcademicLoad,
-                        extra: academicLoad);
-                    context.read<DisciplineBloc>().add(
-                          DisciplineEvent.load(),
-                        );
-                  },
-                  color: Colors.white,
-                  widget: Text(AppStrings.edit),
+          if (!isReport)
+            Row(
+              children: [
+                Expanded(
+                  child: RoundedElevatedButton(
+                    onPressed: () {
+                      context.goNamed(RoutesNames.editAcademicLoad,
+                          extra: academicLoad);
+                      context.read<DisciplineBloc>().add(
+                            DisciplineEvent.load(),
+                          );
+                    },
+                    color: Colors.white,
+                    widget: Text(AppStrings.edit),
+                  ),
                 ),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              Expanded(
-                child: RoundedElevatedButton(
-                  onPressed: () {
-                    context.read<AcademicLoadBloc>().add(
-                          AcademicLoadEvent.deleteAcademicLoad(
-                            id: academicLoad.id,
-                          ),
-                        );
-                  },
-                  color: Colors.white,
-                  widget: const Text(AppStrings.delete),
+                SizedBox(
+                  width: 10,
                 ),
+                Expanded(
+                  child: RoundedElevatedButton(
+                    onPressed: () {
+                      context.read<AcademicLoadBloc>().add(
+                            AcademicLoadEvent.deleteAcademicLoad(
+                              id: academicLoad.id,
+                            ),
+                          );
+                    },
+                    color: Colors.white,
+                    widget: const Text(AppStrings.delete),
+                  ),
+                ),
+              ],
+            ),
+          if (academicLoad.person == null && !isReport)
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: RoundedElevatedButton(
+                onPressed: () {
+                  context.goNamed(RoutesNames.teacherAppointment,
+                      pathParameters: {'academicLoadId': academicLoad.id});
+                },
+                color: Colors.white,
+                widget: const Text(AppStrings.appointTeacher),
               ),
-            ],
-          ),
-          RoundedElevatedButton(
-            onPressed: () {
-              // context.read<PersonBloc>().add(
-              //       PersonEvent.deletePerson(id: person.id!),
-              //     );
-            },
-            color: Colors.white,
-            widget: const Text(AppStrings.appointTeacher),
-          ),
+            ),
         ],
       ),
     );

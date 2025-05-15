@@ -14,6 +14,7 @@ class FullAcademicLoadDto {
     required this.quantityHours,
     required this.group,
     required this.appointmentYear,
+    required this.semester,
     this.departmentId,
   });
   final String id;
@@ -25,7 +26,8 @@ class FullAcademicLoadDto {
   final int quantityHours;
   final String group;
   @JsonKey(name: 'appointment_year')
-  final DateTime appointmentYear;
+  final int appointmentYear;
+  final int semester;
   @JsonKey(name: 'department_id')
   String? departmentId;
 
@@ -37,6 +39,7 @@ class FullAcademicLoadDto {
         quantityHours: quantityHours,
         group: group,
         appointmentYear: appointmentYear,
+        semester: semester,
         departmentId: departmentId,
       );
 
@@ -49,6 +52,7 @@ class FullAcademicLoadDto {
         quantityHours: object.quantityHours,
         group: object.group,
         appointmentYear: object.appointmentYear,
+        semester: object.semester,
         departmentId: object.departmentId,
       );
 

@@ -3,6 +3,7 @@ import 'package:coursework_pis/domain/models/full_academic_load.dart';
 import 'package:fpdart/fpdart.dart';
 
 import '../models/academic_load.dart';
+import '../models/person.dart';
 
 abstract interface class AcademicLoadRepository {
   Future<Either<Failure, List<FullAcademicLoad>>> getAcademicLoad();
